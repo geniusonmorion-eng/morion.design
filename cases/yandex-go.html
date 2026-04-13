@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ЯндексGO — Бери Заряд — Кузнецова Анастасия</title>
+<link rel="stylesheet" href="../style.css" />
+<style>
+  html, body { overflow: auto; height: auto; background: #fff; }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .case-page { max-width: 1200px; margin: 0 auto; padding: 40px 25px 80px; animation: fadeSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) both; }
+  .case-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 400; color: #171717; margin-bottom: 40px; transition: opacity 180ms; }
+  .case-back:hover { opacity: 0.5; }
+  .case-back svg { width: 16px; height: 16px; }
+  .case-header { margin-bottom: 40px; }
+  .case-header h1 { font-size: 48px; font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; color: #171717; margin-bottom: 8px; }
+  .case-header .case-subtitle { font-size: 18px; color: #777; font-weight: 400; }
+  .case-header .case-meta-row { display: flex; gap: 24px; margin-top: 16px; font-size: 14px; color: #171717; }
+  .case-gallery-full img,
+  .case-gallery-full video { width: 100%; border-radius: 8px; display: block; }
+  .case-gallery-full video { aspect-ratio: 16 / 9; object-fit: cover; }
+  .case-gallery-full { margin: 0; }
+  .case-body { max-width: 100%; margin-top: 24px; }
+  .case-body + .case-body { margin-top: 0; }
+  .case-body + .case-gallery-full { margin-top: 40px; }
+  .case-gallery-full + .case-body { margin-top: 48px; }
+  .case-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .case-two-col img { width: 100%; border-radius: 8px; display: block; }
+  .case-body p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
+  .case-body p strong { font-weight: 500; }
+  .case-body h2 { font-size: 36px; font-weight: 500; margin: 0 0 40px; color: #171717; }
+
+  .highlight-block {
+    background: #F3F3F3;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 8px 0 24px;
+    display: flex;
+    align-items: center;
+  }
+  .highlight-block p {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #171717;
+    margin-bottom: 0;
+  }
+
+  .collapsible { padding: 16px 0; }
+  .collapsible:first-of-type { border-top: 1px solid #eee; padding-top: 24px; }
+  .collapsible-toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #171717;
+    padding: 0;
+    text-align: left;
+  }
+  .collapsible-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    margin-top: 2px;
+    background: #e9e9e9;
+    backdrop-filter: blur(23px);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .collapsible-icon .line {
+    position: absolute;
+    width: 14px;
+    height: 1px;
+    background: #1a1a1a;
+    transition: transform 0.4s ease;
+  }
+  .collapsible-icon .line:first-child { transform: rotate(0deg); }
+  .collapsible-icon .line:last-child { transform: rotate(90deg); }
+  .collapsible.open .collapsible-icon .line:last-child { transform: rotate(0deg); }
+  .collapsible-content { overflow: hidden; height: 0; transition: height 0.5s ease; }
+  .collapsible-content-inner { padding-top: 24px; }
+  .collapsible-content-inner p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
+  .collapsible-content-inner .highlight-block p { font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 0; color: #171717; }
+
+  .label-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; background: #efefef; color: #000;
+    border-radius: 2px; font-size: 11px; font-weight: 500;
+    margin-right: 4px; vertical-align: middle;
+  }
+  .label-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; background: #777; color: #000;
+    border-radius: 50%; font-size: 11px; font-weight: 500;
+    margin-right: 8px; vertical-align: middle;
+  }
+  .plan-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+  .plan-item .plan-badges { display: flex; gap: 4px; margin-top: 3px; flex-shrink: 0; }
+  .plan-item p { margin-bottom: 0; }
+</style>
+</head>
+<body>
+  <div class="case-page">
+    <a href="../index.html" class="case-back">
+      <svg viewBox="0 0 16 16"><path d="M10 3 L5 8 L10 13" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      Назад
+    </a>
+    <div class="case-header">
+      <h1>ЯндексGO — Бери Заряд</h1>
+    </div>
+    <div class="case-gallery-full">
+      <video src="../media/yandex.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+    <div class="case-body">
+      <h2>О проекте</h2>
+      <p>Бери Заряд — сервис аренды пауэрбанков внутри суперприложения Яндекс Go. Пользователи берут зарядное устройство на ближайшей станции, пользуются им и возвращают на любую совместимую станцию.</p>
+      <p>Ключевое ограничение: у Бери Заряд два типа станций — голубые и оранжевые. Пауэрбанк можно вернуть только на станцию того же цвета.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/yandex-case/yandex-new/1.png" alt="О проекте">
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <h2>Задача</h2>
+      <p>Текущая карточка аренды позволяет взять только один пауэрбанк за раз. Нужно спроектировать флоу аренды двух и более устройств с одного аккаунта — и встроить его в существующую экосистему Яндекс Go.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <h2>Ограничения</h2>
+      <p>Мы не можем показывать заряд пауэрбанка в приложении</p>
+      <p>Тарифы динамические и меняются в зависимости от времени</p>
+      <p>У Бери Заряд есть две станции заряда: Голубые и Оранжевые, поэтому ты не можешь вернуть голубой пауэрбанк на оранжевой станции и наоборот соответственно</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/yandex-case/yandex-new/2.png" alt="Ограничения">
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <h2>План работы</h2>
+      <p><strong style="color: #4D3AFB;">Погружение в контекст.</strong> Понимание бизнес-целей, технических ограничений и ожидаемого импакта на метрики.</p>
+      <p><strong style="color: #4D3AFB;">Discovery и сегментация.</strong> Исследование пользователей, анализ отзывов, формирование первичных гипотез.</p>
+      <p><strong style="color: #4D3AFB;">Бенчмарки.</strong> Анализ конкурентов в нише шейринга — как в РФ, так и на западном рынке.</p>
+      <p><strong style="color: #4D3AFB;">Кастдевы.</strong> Интервью с пользователями для проверки гипотез на релевантность.</p>
+      <p><strong style="color: #4D3AFB;">JTBD и гипотезы.</strong> Формулировка джобов по сегментам, сведение инсайтов в структуру.</p>
+      <p><strong style="color: #4D3AFB;">Приоритизация.</strong> Скоринг гипотез по формуле ценность / сложность, построение user flow.</p>
+      <p><strong style="color: #4D3AFB;">Дизайн.</strong> Low → high fidelity, проектирование флоу с учётом экосистемных ограничений Яндекс Go.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Первичный скоринг задачи (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Первичный скоринг задачи
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Прописывание понимания задачи и постепенно погружаюсь в контекст. Выявила для себя статистически важные критерии успехов.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/yandex-case/yandex-new/3.png" alt="Скоринг задачи">
+          </div>
+          <p>Также набросала вопросы к карточке аренды, ведь именно её мы будем прокачивать, благодаря погружению и пониманию, было намного легче накидать ux-аудит.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/yandex-case/yandex-new/4.png" alt="UX-аудит">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discovery (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Дискавери
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Проанализировала шейринговые сервисы в РФ и на западном рынке: PowerApp, EnergoS, PowerNow и другие. Для каждого зафиксировала структуру главной страницы, карточку тарифа и флоу аренды.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/yandex-case/yandex-new/5.png" alt="Discovery">
+          </div>
+          <p><strong>Промежуточные выводы</strong></p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Подсвечивать выгоду</p></div>
+              <p>Если показывать индикатор спроса (по аналогии с Яндекс Такси — высокий / низкий), пользователь сможет принимать решение об аренде осознаннее, а сервис сможет влиять на распределение нагрузки.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Бронирование</p></div>
+              <p>Функция предварительного бронирования с таймаутом снимет страх «приду, а зарядок нет» — особенно критично для группового сценария, когда нужно несколько устройств.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Индикатор динамической цены</p></div>
+              <p>Прозрачность ценообразования повышает доверие — пользователь видит, почему цена такая, и может выбрать оптимальное время.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Кросспродажи внутри суперприложения</p></div>
+              <p>Если до станции далеко — предложить вызвать такси прямо из карточки. Это сокращает время доступа к пауэрбанку и генерирует конверсию в другие продукты экосистемы.</p>
+            </div>
+            <div style="grid-column: 1 / -1;">
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Цветовое кодирование</p></div>
+              <p>Визуальное разделение голубых и оранжевых станций на карте и в карточке аренды — чтобы пользователь сразу понимал, куда нести конкретный пауэрбанк.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Бенчмарки (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Бенчмарки шейринговых сервисов в РФ и на Западном рынке
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>После дискавери фазы я пришла к тому, что удалось нагенерить какое-то количество гипотез, некоторые из них:</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/yandex-case/yandex-new/6.png" alt="Бенчмарки">
+          </div>
+          <p><strong>Промежуточные выводы по discovery, вот некоторые из них:</strong></p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Кросспродажи</p></div>
+              <p>Если в приложении добавить построение маршрута до ближайшей станции "Бери заряд" и предложить при необходимости вызвать такси до неё, то время поиска и доступа к пауэрбанку сократится в среднем на 3 минуты, а конверсия в аренду вырастет за счёт удобства перемещения к точке.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Ограничения</p></div>
+              <p>Так как у каждой банки есть свой собственный идентификатор, поэтому логично было бы дать клиенту протыкивать сдачу каждой банки, все банки за раз по одной кнопке сдать нельзя.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Прозрачность на старте</p></div>
+              <p>Перед началом аренды хороший UX – показать тариф. Например, Яндекс Go при выборе станции «Бери заряд» сразу отображает текущую стоимость аренды на этой точке.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Цветовое кодирование</p></div>
+              <p>Дать цветовое кодирование для конкретной банки (синей/оранжевой), чтобы дать клиенту возможность навигировать внутри сервиса.</p>
+            </div>
+            <div style="grid-column: 1 / -1;">
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Доступность</p></div>
+              <p>Если добавить функцию построения маршрута до выбранной станции прямо в приложении, чтобы пользователю было легче и быстрее найти нужную станцию, это может снизить вероятность того, что пользователь заблудится, и улучшит общее впечатление от сервиса.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Сегменты клиентов (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Сегменты клиентов
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>По результатам анализа отзывов и интервью выделила два ключевых сегмента для мультиаренды:</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Туристы и путешественники</p></div>
+              <p>Берут пауэрбанки в поездках для себя и детей. Ценят скорость, не хотят разбираться в интерфейсе. Групповой сценарий: семья с несколькими гаджетами.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Школьники и студенты</p></div>
+              <p>Арендуют несколько устройств для компании — в библиотеке, на фестивале, в кафе. Чувствительны к цене, важна прозрачность тарифов.</p>
+            </div>
+          </div>
+          <p>Для каждого сегмента прописала джобы по модели Jobs as Progress / Jobs as Activities, чтобы видеть и боли, и ожидания от результата.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/yandex-case/yandex-new/7.png" alt="Сегменты клиентов">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Приоритизация гипотез (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Приоритизация гипотез
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p><strong>Некоторые гипотезы, которые пошли в первую итерацию:</strong></p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Быстрый поиск станций</p></div>
+              <p>Если меня снавегирует по удобным для меня точкам, в случае когда я хочу сдать в разные станции разные пауэрбанки, то я был бы рад, если они будут находиться рядом со мной и меня смогут быстро снавегировать внутри приложения. (увеличим Session length)</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Дополнительная ценность</p></div>
+              <p>Если мы будем высылать пуши, когда ЯндексGo сканирует телефон, точно реализуемо на примере energygo, таким образом мы сможем валидировать клиенту, что у вас мало заряда, не хотели бы приобрести Бери Заряд (увеличим CR, RPR, Sticky Factor)</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Подсвечиваем временные тарифы</p></div>
+              <p>Если мы будем в зависимости от диапазона времени, подсвечивать выгодные предложения (например: как делает яндекс такси, высокий и низкий спрос), то сможем повлиять на выбор клиента и мотивировать его на покупку аренды банок в конкретное время (увеличим Activate Something Rate, Sessions frequency per user, RPR)</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Цветовое кодирование</p></div>
+              <p>Дать цветовое кодирование для конкретной банки (синей/оранжевой), чтобы дать клиенту возможность смотреть только конкретного цвета станцию, что повлияет на cx пользователей (увеличим AOV, LTV, MAU/DAU).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Flow (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Юзер флоу
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <div class="case-gallery-full">
+            <img src="../media/yandex-case/yandex-new/8.png" alt="Core Flow">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Первая итерация -->
+    <div class="case-body">
+      <h2>Первая итерация дизайна. Что внедрили в итоге?</h2>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/yandex-case/yandex-new/9.png" alt="Первая итерация">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p><strong>Проработанный копирайтинг</strong> (большинство клиентов 3/4) отметили что не было сразу понятно "взять" и "отдать", сразу говорим что на станции есть 8 зарядок и свободных 10 слотов</p>
+      <p><strong>Возможность бронирования зарядки,</strong> улучшит пользовательский опыт и снимет страхи остаться без банки по приходу/приезду на станцию (внедрил ограничения бронирования 9 минут).</p>
+      <p><strong>Кросспродажи</strong> для бизнеса внутри суперapp, мы посчитали что добраться до точки на яндекстакси быстрее и вот сколько это будет стоит (растим revenue, conversion rate в другие экосистемные продукты).</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/yandex-case/yandex-new/10.png" alt="Кросспродажи">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p><strong>Маркетинг.</strong> Обратный отсчет кстати хорошо работает в маркетинге, что по гипотезе может сподвигнуть клиента торопиться к его крутой зарядке, а мы в свою очередь как сервис поможем ему в этом разными способами.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/yandex-case/yandex-new/11.png" alt="Маркетинг">
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 12px;">
+      <img src="../media/yandex-case/yandex-new/12.png" alt="Маркетинг 2">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p>По методологии job as activities, job as progress, прорабатываем карточку зарядки (1-ой), сразу акцентрируем внимание на времени, стоимость тут не так важна, к тому же она лояльная, ну и цвет банки, чтобы быстро понять куда ее нести (цветовое кодирование). Далее код банки, который в основном необходим, чтобы обращаться по вопросам в тех поддержку. Есть возможность на карте отфильтровать что показывать, для конкретных станций. Так например пользователь может выбрать только оранжевые или только синие станции, чтобы быстро снавегироваться (без когнитивной нагрузки на карте)</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/yandex-case/yandex-new/13.png" alt="Карточка зарядки">
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Что делать дальше? -->
+    <div class="case-body">
+      <h2>Что делать дальше?</h2>
+      <p><strong>Юзабилити-тестирование.</strong> Есть гипотеза, что пользователи могут путать тарифную сетку и накопленную стоимость по конкретному пауэрбанку — это нужно проверить до запуска.</p>
+      <p><strong>Корнер-кейсы.</strong> Проработать технические сценарии: что если на станции не хватает слотов для возврата, что если бронь истекла в пути, что если пауэрбанк разряжен.</p>
+      <p><strong>Итерационная раскатка.</strong> Запускать гипотезы по приоритетам, чтобы изолированно измерять влияние каждого изменения на метрики.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/yandex-case/yandex-new/14.png" alt="Что дальше">
+    </div>
+
+  </div>
+
+<script>
+document.querySelectorAll('.collapsible-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.collapsible');
+    const content = parent.querySelector('.collapsible-content');
+    const inner = content.querySelector('.collapsible-content-inner');
+    if (parent.classList.contains('open')) {
+      content.style.height = content.scrollHeight + 'px';
+      requestAnimationFrame(() => { content.style.height = '0'; });
+      parent.classList.remove('open');
+    } else {
+      parent.classList.add('open');
+      content.style.height = inner.offsetHeight + 'px';
+      content.addEventListener('transitionend', () => {
+        if (parent.classList.contains('open')) content.style.height = 'auto';
+      }, { once: true });
+    }
+  });
+});
+
+document.querySelectorAll('.case-back').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    document.querySelector('.case-page').style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.querySelector('.case-page').style.opacity = '0';
+    document.querySelector('.case-page').style.transform = 'translateY(15px)';
+    setTimeout(() => { window.location.href = href; }, 1000);
+  });
+});
+</script>
+</body>
+</html>

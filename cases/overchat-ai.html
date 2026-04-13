@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Overchat AI — Кузнецова Анастасия</title>
+<link rel="stylesheet" href="../style.css" />
+<style>
+  html, body { overflow: auto; height: auto; background: #fff; }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .case-page { max-width: 1200px; margin: 0 auto; padding: 40px 25px 80px; animation: fadeSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) both; }
+  .case-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 400; color: #171717; margin-bottom: 40px; transition: opacity 180ms; }
+  .case-back:hover { opacity: 0.5; }
+  .case-back svg { width: 16px; height: 16px; }
+  .case-header { margin-bottom: 40px; }
+  .case-header h1 { font-size: 48px; font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; color: #171717; margin-bottom: 8px; }
+  .case-header .case-subtitle { font-size: 18px; color: #777; font-weight: 400; }
+  .case-header .case-meta-row { display: flex; gap: 24px; margin-top: 16px; font-size: 14px; color: #171717; }
+  .case-gallery-full img,
+  .case-gallery-full video { width: 100%; border-radius: 8px; display: block; }
+  .case-gallery-full video { aspect-ratio: 16 / 9; object-fit: cover; }
+  .case-gallery-full { margin: 0; }
+  .case-body { max-width: 100%; margin-top: 24px; }
+  .case-body + .case-body { margin-top: 0; }
+  .case-body + .case-gallery-full { margin-top: 40px; }
+  .case-gallery-full + .case-body { margin-top: 48px; }
+  .case-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .case-two-col img { width: 100%; border-radius: 8px; display: block; }
+  .case-body p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
+  .case-body p strong { font-weight: 500; }
+  .case-body h2 { font-size: 36px; font-weight: 500; margin: 0 0 40px; color: #171717; }
+
+  .highlight-block {
+    background: #F3F3F3;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 8px 0 24px;
+    display: flex;
+    align-items: center;
+  }
+  .highlight-block p {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #171717;
+    margin-bottom: 0;
+  }
+
+  .collapsible { padding: 16px 0; }
+  .collapsible:first-of-type { border-top: 1px solid #eee; padding-top: 24px; }
+  .collapsible-toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #171717;
+    padding: 0;
+    text-align: left;
+  }
+  .collapsible-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    margin-top: 2px;
+    background: #e9e9e9;
+    backdrop-filter: blur(23px);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .collapsible-icon .line {
+    position: absolute;
+    width: 14px;
+    height: 1px;
+    background: #1a1a1a;
+    transition: transform 0.4s ease;
+  }
+  .collapsible-icon .line:first-child { transform: rotate(0deg); }
+  .collapsible-icon .line:last-child { transform: rotate(90deg); }
+  .collapsible.open .collapsible-icon .line:last-child { transform: rotate(0deg); }
+  .collapsible-content { overflow: hidden; height: 0; transition: height 0.5s ease; }
+  .collapsible-content-inner { padding-top: 24px; }
+  .collapsible-content-inner p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
+  .collapsible-content-inner .highlight-block p { font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 0; color: #171717; }
+
+  .label-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; background: #efefef; color: #000;
+    border-radius: 2px; font-size: 11px; font-weight: 500;
+    margin-right: 4px; vertical-align: middle;
+  }
+  .label-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; background: #777; color: #000;
+    border-radius: 50%; font-size: 11px; font-weight: 500;
+    margin-right: 8px; vertical-align: middle;
+  }
+  .plan-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+  .plan-item .plan-badges { display: flex; gap: 4px; margin-top: 3px; flex-shrink: 0; }
+  .plan-item p { margin-bottom: 0; }
+</style>
+</head>
+<body>
+  <div class="case-page">
+    <a href="../index.html" class="case-back">
+      <svg viewBox="0 0 16 16"><path d="M10 3 L5 8 L10 13" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      Назад
+    </a>
+    <div class="case-header">
+      <h1>Overchat AI — вход и регистрация</h1>
+    </div>
+    <div class="case-gallery-full">
+      <img src="../media/case3.png" alt="Overchat AI">
+    </div>
+
+    <div class="case-body">
+      <h2>Что такое Overchat? В чем суть продукта?</h2>
+      <p>Overchat — маркетплейс AI-моделей по подписке. Пользователи выбирают тариф (премиум, медиум и др.), каждый из которых включает определённое количество запросов в виде баллов. Новые пользователи получают 200 бесплатных баллов при первом входе — это стимулирует вовлечение и повышает вероятность перехода на платную подписку.</p>
+    </div>
+
+    <div class="case-gallery-full">
+      <img src="../media/overchat/overchat1.png" alt="Overchat">
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <h2>Проблема</h2>
+      <p>На платформу заходят более 2 000 пользователей в месяц, но успешно проходят регистрацию или авторизацию только 100–300 из них. Те, кто всё же регистрируется, делают в среднем 3–4 запроса за месяц и больше не возвращаются. Это указывает на две ключевые проблемы: высокий отток на этапе входа и низкую частотность использования сервиса.</p>
+      <p style="color: #999;">Что было до:</p>
+    </div>
+
+    <div class="case-gallery-full">
+      <img src="../media/overchat/overchat-new/problema-new.png" alt="Проблема">
+    </div>
+
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <h2>План работы</h2>
+      <p><strong style="color: #4D3AFB;">Сбор вводных.</strong> Общение с CPO, маркетологом и разработкой для формирования Definition of Ready.</p>
+      <p><strong style="color: #4D3AFB;">UX-аудит.</strong> Анализ текущей версии регистрации и входа: выявление проблем и генерация первичных гипотез.</p>
+      <p><strong style="color: #4D3AFB;">Формулировка DOR.</strong> Фиксация понимания задачи, контекста и измеримых критериев успеха.</p>
+      <p><strong style="color: #4D3AFB;">Дискавери.</strong> Исследование лучших практик и поиск дополнительных гипотез.</p>
+      <p><strong style="color: #4D3AFB;">Приоритизация.</strong> Оформление гипотез и сортировка по формуле ценность / сложность.</p>
+      <p><strong style="color: #4D3AFB;">A/B-тестирование.</strong> Раскатка на 50% пользователей — старая и новая версии параллельно.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Критерии успеха
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>После общения с командой я зафиксировала четыре ключевых критерия:</p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px;">
+            <div>
+              <div class="highlight-block"><p>Рост конверсии в активного пользователя</p></div>
+              <p>Увеличение глубины просмотра и CR to Active User через улучшенный вход и регистрацию.</p>
+            </div>
+            <div>
+              <div class="highlight-block"><p>Рост мотивации после регистрации</p></div>
+              <p>Увеличение CR и Activate Something Rate за счёт демонстрации ценности продукта.</p>
+            </div>
+            <div>
+              <div class="highlight-block"><p>Рост вовлечённости</p></div>
+              <p>Через кастомизацию, разноформатные элементы и эмоциональный дизайн. Метрика: NPS.</p>
+            </div>
+            <div>
+              <div class="highlight-block"><p>Рост удержания</p></div>
+              <p>Увеличение Customer Retention Rate за счёт демонстрации реальной пользы при внедрении новых практик.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        UX-аудит текущих макетов
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Вот некоторые результаты данного этапа.</p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px;">
+            <div>
+              <div class="highlight-block"><p>Для новых пользователей</p></div>
+              <p>— Агрессивный призыв к регистрации: пользователь не может ознакомиться с продуктом до создания аккаунта.</p>
+              <p>— Шаблонное окно регистрации — не отличается от конкурентов, из-за чего возникает ощущение «очередного сервиса».</p>
+              <p>— Ограниченные способы входа: только Gmail и Google. Большая часть аудитории отсекается.</p>
+              <p>— Письма с кодом подтверждения попадают в спам — подтвердили 3 из 8 респондентов.</p>
+            </div>
+            <div>
+              <div class="highlight-block"><p>Для существующих пользователей</p></div>
+              <p>— Нет подсказок для быстрого ввода email — адрес вводится заново вручную.</p>
+              <p>— В десктопной версии внимание рассеивается из-за множества элементов на фоне.</p>
+              <p>— Кнопка CTA расположена вверху, хотя на мобильных удобнее нажимать внизу.</p>
+              <p>— Указана доступность в App Store и Play Market, но приложение ещё не выпущено.</p>
+              <p>— Код подтверждения не виден в заголовке пуша — нужно открывать письмо.</p>
+            </div>
+          </div>
+          <div class="case-gallery-full" style="margin-top: 24px;">
+            <img src="../media/overchat/overchat-new/audit.png" alt="UX-аудит">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Гипотезы
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Связка UX-аудита и дискавери позволила сгенерировать пять гипотез:</p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px;">
+            <div>
+              <div class="highlight-block"><p>Валидация email</p></div>
+              <p>Если добавить dropdown для выбора почтового сервиса с уведомлением о поддерживаемых провайдерах и проверкой на ботов — ускорим процесс, повысим конверсию и снизим фрод.</p>
+            </div>
+            <div>
+              <div class="highlight-block"><p>Magic Link</p></div>
+              <p>Если внедрить вход через magic link — избавим пользователя от запоминания и ввода данных, сократим время на регистрацию, снизим Drop-off Rate.</p>
+            </div>
+            <div>
+              <div class="highlight-block"><p>Навигация к письму</p></div>
+              <p>Если показывать пользователю, как найти письмо с кодом в почте (включая папку «Спам») — увеличим конверсию прохождения следующих шагов и снизим отток с формы.</p>
+            </div>
+            <div>
+              <div class="highlight-block"><p>Фулскрин-регистрация</p></div>
+              <p>Если перевести форму входа на полный экран — снизим когнитивную нагрузку и сфокусируем пользователя на целевом действии. Метрика: Conversion Rate.</p>
+            </div>
+            <div style="grid-column: 1 / -1;">
+              <div class="highlight-block"><p>Демонстрация ценности</p></div>
+              <p>Если на этапе входа показывать результаты, которых пользователь сможет достичь внутри Overchat (генерация кода, разнообразие AI-моделей, детализированные изображения) — повысим Trial-to-Paid Conversion Rate среди новых пользователей.</p>
+            </div>
+          </div>
+          <div class="case-gallery-full" style="margin-top: 24px;">
+            <img src="../media/overchat/overchat-new/gipotezy-new2.png" alt="Гипотезы">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Приоритизация и скоупинг гипотез
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>После обрисовывания гипотез, мы их отсортировали. Всю приоритизацию можно разложить по условной формуле ценность/сложность. После чего мы обсудили с командой в лице CPO & Маркетолога, что будем брать в разрезе первой итерации.</p>
+          <div class="case-gallery-full" style="margin-top: 24px;">
+            <img src="../media/overchat/overchat-new/gipotezy-new.png" alt="Приоритизация">
+          </div>
+          <p style="margin-top: 24px;">После обсуждения с CPO и маркетологом в первую итерацию взяли гипотезы 1, 2, 3 и 4 — технически их было легче реализовать. Гипотезу 5 (демонстрация ценности) отложили в бэклог для следующей итерации.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <h2>Дизайн первой итерации</h2>
+    </div>
+
+    <div class="case-two-col" style="grid-template-columns: 1fr 1fr; width: 100%;">
+      <div>
+        <img src="../media/overchat/overchat-new/1.png" alt="Форма входа" style="width:100%; border-radius:8px; display:block;">
+        <div class="highlight-block" style="margin-top: 16px;">
+          <p>Форма входа и регистрации</p>
+        </div>
+        <p style="font-size:16px; line-height:1.6; color:#333; margin-top:12px;">Слева — витрина ценности: примеры того, что пользователь получит, используя AI-модели Overchat. Подпись о бесплатной пробной версии для новых пользователей. Форма вынесена на фулскрин, убраны отвлекающие элементы.</p>
+      </div>
+      <div>
+        <img src="../media/overchat/overchat-new/2.png" alt="Подтверждение кода" style="width:100%; border-radius:8px; display:block;">
+        <div class="highlight-block" style="margin-top: 16px;">
+          <p>Экран подтверждения кода</p>
+        </div>
+        <p style="font-size:16px; line-height:1.6; color:#333; margin-top:12px;">Совместно с разработкой решили проблему с письмами в спаме: на экране подтверждения подсвечиваем, на какую именно почту отправлен код. Слева — визуальная инструкция, куда идти в почтовом клиенте, чтобы пользователь не тратил время на поиск письма.</p>
+      </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <h2>UX-тестирование</h2>
+      <p>Перед запуском A/B-теста провели юзабилити-тестирование с фокус-группой — отрисовали все корнер-кейсы и проверили, как отрабатывает новая концепция.</p>
+      <p><strong>Результаты тестирования:</strong></p>
+      <p>— Среднее время прохождения регистрации и входа: <strong>45 секунд</strong> (было 60 секунд). Гипотеза о когнитивной нагрузке подтвердилась — пользователи спотыкались на этапе ввода кода.</p>
+      <p>— 6 из 8 респондентов подтвердили, что не понимали, какую ценность они получат после авторизации — подтверждение гипотезы для следующей итерации.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <h2>Результаты A/B-теста (30 дней, 50/50)</h2>
+    </div>
+
+    <div class="case-gallery-full">
+      <img src="../media/overchat/overchat-new/3.png" alt="Результаты A/B-теста">
+    </div>
+
+    <div class="case-body">
+      <p>После месяца тестирования сравнили старую и новую итерации:</p>
+      <p><strong style="color: #4D3AFB;">+300 новых уникальных пользователей в месяц</strong> — статистически значимое увеличение MAU благодаря снижению когнитивной нагрузки и эмоциональному дизайну.</p>
+      <p><strong style="color: #4D3AFB;">Высокая оценка CSAT</strong> — опрос удовлетворённости новой регистрацией и входом показал положительную динамику.</p>
+      <p><strong style="color: #4D3AFB;">Trial-to-Paid Conversion Rate вырос в 1,5 раза</strong> — больше пользователей переходят на платную подписку после бесплатного периода.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <h2>Что дальше</h2>
+      <p>В бэклоге остаётся гипотеза 5 — демонстрация ценности на этапе входа. По результатам тестирования она получила дополнительное подтверждение: большинство респондентов не понимали, зачем регистрироваться. Планируем внедрить витрину результатов (генерация кода, изображений, работа с документами) в следующей итерации и замерить влияние на Trial-to-Paid CR.</p>
+    </div>
+  </div>
+
+<script>
+document.querySelectorAll('.collapsible-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.collapsible');
+    const content = parent.querySelector('.collapsible-content');
+    const inner = content.querySelector('.collapsible-content-inner');
+    if (parent.classList.contains('open')) {
+      content.style.height = content.scrollHeight + 'px';
+      requestAnimationFrame(() => { content.style.height = '0'; });
+      parent.classList.remove('open');
+    } else {
+      parent.classList.add('open');
+      content.style.height = inner.offsetHeight + 'px';
+      content.addEventListener('transitionend', () => {
+        if (parent.classList.contains('open')) content.style.height = 'auto';
+      }, { once: true });
+    }
+  });
+});
+
+document.querySelectorAll('.case-back').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    document.querySelector('.case-page').style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.querySelector('.case-page').style.opacity = '0';
+    document.querySelector('.case-page').style.transform = 'translateY(15px)';
+    setTimeout(() => { window.location.href = href; }, 1000);
+  });
+});
+</script>
+</body>
+</html>

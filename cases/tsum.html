@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Партнерство ЦУМ — карты лояльности — Кузнецова Анастасия</title>
+<link rel="stylesheet" href="../style.css" />
+<style>
+  html, body { overflow: auto; height: auto; background: #fff; }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .case-page { max-width: 1200px; margin: 0 auto; padding: 40px 25px 80px; animation: fadeSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) both; }
+  .case-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 400; color: #171717; margin-bottom: 40px; transition: opacity 180ms; }
+  .case-back:hover { opacity: 0.5; }
+  .case-back svg { width: 16px; height: 16px; }
+  .case-header { margin-bottom: 40px; }
+  .case-header h1 { font-size: 48px; font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; color: #171717; margin-bottom: 8px; }
+  .case-header .case-subtitle { font-size: 18px; color: #777; font-weight: 400; }
+  .case-header .case-meta-row { display: flex; gap: 24px; margin-top: 16px; font-size: 14px; color: #171717; }
+  .case-gallery-full img,
+  .case-gallery-full video { width: 100%; border-radius: 8px; display: block; }
+  .case-gallery-full video { aspect-ratio: 16 / 9; object-fit: cover; }
+  .case-gallery-full { margin: 0; }
+  .case-body { max-width: 100%; margin-top: 24px; }
+  .case-body + .case-body { margin-top: 0; }
+  .case-body + .case-gallery-full { margin-top: 40px; }
+  .case-gallery-full + .case-body { margin-top: 48px; }
+  .case-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .case-two-col img { width: 100%; border-radius: 8px; display: block; }
+  .case-body p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
+  .case-body p strong { font-weight: 500; }
+  .case-body h2 { font-size: 36px; font-weight: 500; margin: 0 0 40px; color: #171717; line-height: 1.3; }
+
+  .highlight-block {
+    background: #F3F3F3;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 8px 0 24px;
+    display: flex;
+    align-items: center;
+  }
+  .highlight-block p {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #171717;
+    margin-bottom: 0;
+  }
+
+  .collapsible { padding: 16px 0; }
+  .collapsible:first-of-type { border-top: 1px solid #eee; padding-top: 24px; }
+  .collapsible-toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #171717;
+    padding: 0;
+    text-align: left;
+  }
+  .collapsible-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    margin-top: 2px;
+    background: #e9e9e9;
+    backdrop-filter: blur(23px);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .collapsible-icon .line {
+    position: absolute;
+    width: 14px;
+    height: 1px;
+    background: #1a1a1a;
+    transition: transform 0.4s ease;
+  }
+  .collapsible-icon .line:first-child { transform: rotate(0deg); }
+  .collapsible-icon .line:last-child { transform: rotate(90deg); }
+  .collapsible.open .collapsible-icon .line:last-child { transform: rotate(0deg); }
+  .collapsible-content { overflow: hidden; height: 0; transition: height 0.5s ease; }
+  .collapsible-content-inner { padding-top: 24px; }
+  .collapsible-content-inner p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
+  .collapsible-content-inner .highlight-block p { font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 0; color: #171717; }
+
+  .label-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; background: #efefef; color: #000;
+    border-radius: 2px; font-size: 11px; font-weight: 500;
+    margin-right: 4px; vertical-align: middle;
+  }
+  .label-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; background: #777; color: #000;
+    border-radius: 50%; font-size: 11px; font-weight: 500;
+    margin-right: 8px; vertical-align: middle;
+  }
+  .plan-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+  .plan-item .plan-badges { display: flex; gap: 4px; margin-top: 3px; flex-shrink: 0; }
+  .plan-item p { margin-bottom: 0; }
+</style>
+</head>
+<body>
+  <div class="case-page">
+    <a href="../index.html" class="case-back">
+      <svg viewBox="0 0 16 16"><path d="M10 3 L5 8 L10 13" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      Назад
+    </a>
+    <div class="case-header">
+      <h1>Партнерство ЦУМ — карты лояльности</h1>
+    </div>
+    <div class="case-gallery-full">
+      <img src="../media/obloga-tsum.png" alt="Партнерство ЦУМ">
+    </div>
+
+    <!-- Контекст -->
+    <div class="case-body">
+      <h2>Контекст</h2>
+      <p>Для премиальных категорий пользователей объединяем программы лояльности в рамках стратегического партнёрства с ЦУМ. Для категорий пользователей Альфа-Онли и А-клуб банк на год бесплатно предоставляет право участия в программах лояльности ЦУМ.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Зачем делать? -->
+    <div class="case-body">
+      <h2>Зачем делать?</h2>
+      <p>Упростить процесс текущего флоу и убрать ненужные экраны</p>
+      <p>Увеличить конверсию в использование карты лояльности и куар</p>
+      <p>Обновить дизайн и добавить информацию о новых возможностях для клиентов</p>
+      <p>Благодаря коллаборации ЦУМ и Альфа, будет возможность растить вовлечение и узнаваемость бренда у обоих.</p>
+      <p>Статистический рост revenue, засчет того что Альфа приобретает коммисию с транзакции по картам ЦУМ внутри продукта.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Итого -->
+    <div class="case-body">
+      <h2>Итого</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div>
+          <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Миссия</p></div>
+          <p>Получать кэшбэк и другие плюшки для b2b премиальных клиентов, возможность сэкономить свой денежные средства засчет широкой линейки лояльности (кэшбеки)</p>
+        </div>
+        <div>
+          <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Цель</p></div>
+          <p>Переработать флоу, таким образом, чтобы вырастить conversion rate в использование карт, как следствие засчет переработки флоу увеличить частоту использования карт лояльности, засчет чего увеличить revenue благодаря комисии партнерской программы между двумя бизнесами (Альфа и ЦУМ).</p>
+        </div>
+        <div>
+          <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Аудитория</p></div>
+          <p>Премиальный сегмент<br>Открыли для себя карту лояльности ЦУМ (вне банка)<br>Пользователи, которые используют b2b-карты альфы</p>
+        </div>
+        <div>
+          <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Критерии успеха</p></div>
+          <p>Рост операций по карте ЦУМ (orange/black/white)<br>Статистический рост conversion rate с точки входа в использование карт лояльности ЦУМа<br>Увеличение User activation rate, переход в ключевое действие, а именно в использование qr-кода карты</p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Дискавери (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Дискавери
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Тут мы забенчмаркали конкурентов, погуглили и подумали в сторону гипотез, которые бы улучшили наши критерии.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/tsum/2.png" alt="Дискавери">
+          </div>
+          <p>У Яндекс Pay почти все карты имеют онбординговую информацию, засчет чего на этапе первичного входа показывают клиент всю ценность от использования карты (Сплит, Сейвы). Та же самая логику и у Ozon банк.</p>
+          <p>У большинства конкурентов (pay, сбер, тиньк) точка входа в программы лояльностей имеет виджетный блок, где заранее подсвечены выгоды от использования партнерской программы в виде кэшбэков.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Гипотезы (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Гипотезы
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">Если первым клиентам дадим осязаемую ценность, засчёт которой сможем вырастить лояльность, сможем увеличить conversion rate, вырастим осведомленность о продукте</p></div>
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">Пользователи не понимают чем карта black отличается от карт white/orange. Если у клиента при подключении больше одной карты лояльности, то мы должны предложить ему преимущества и отличия одной от другой (у нас же разница в процентах кэшбэка), поэтому ацент на предложении банка нужно вынести на первый план.</p></div>
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">Если мы внедрим точку входа с приоритетом в ценности, внутри продуктов с кэшбеком то сможем увеличить проходимость внутрь (DAU &amp; MAU, conversion rate в продукт)</p></div>
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">Если с помощью тренеры, мы будем навигировать пользователя и подсказывать внутри продукта, то сможем увеличить лояльность и time to value</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Дизайн первой итерации -->
+    <div class="case-body">
+      <h2>Дизайн первой итерации (core flow, без учета корнер кейсов)</h2>
+      <p>При первом заходе в приложение, клиент доскраливая до премиальной плашки Alfa Only, его перебрасывает в Alfa Only. В данной странице находятся все премиальные продукты, в том числе и каналы кэшбэков, по нажатию на плашку ЦУМ осуществляется вход в продукт.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/tsum/3.png" alt="Дизайн итерации — вход">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p>По нажатию открывается онбординг, которым по гипотезе может улучшить восприятие и лояльность. Здесь мы вместе с продаком вытащили всю пользу, по практикам Pay, чтобы увеличить мотивацию в подключение карты лояльность.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/tsum/4.png" alt="Дизайн итерации — онбординг">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p>Клиенты с картами ЦУМ могут быть разными, клиент у которого есть все карты, либо одна карта, либо клиент только что завел ее у нас и у него пока нет баллов.</p>
+      <p>Тут важной деталью выступает, что именно по приоритетам будет встречать клиента, по гипотезе мы ставим акцент на кэшбеках, ведь именно они неизменным у первых клиентов/тех кто уже подключил карту и пользуется.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/tsum/5.png" alt="Дизайн итерации — приоритеты">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p>Внедрение тренера, который ведет пользователя внутри продукта объясняя функциональность, что растит вовлечение и эмоции на пути взаимодействия с картами лояльности ЦУМ.</p>
+      <p>Кросспродажи, фиксированная кнопка QR-кода и перейти на сайт ЦУМ, чтобы дополнительно растить revenue/conversion rate.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Юзабилити тестирование -->
+    <div class="case-body">
+      <h2>Юзабилити тестирование</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">10/10 легко находят точку входа в Alfa Only.</p></div>
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">8/10 разобрались, как открывать и активировать карту лояльности ЦУМ.</p></div>
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">7/10 отмечали, что "тренер" вызывает положительные эмоции, а проработанный tov маскота помог в работе с картой.</p></div>
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">8/10 поняли, как подключить карту лояльности внутри продукта.</p></div>
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px; grid-column: 1 / -1;"><p style="margin-bottom: 0;">10/10 поняли как использовать QR-код для оплаты.</p></div>
+      </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Результаты -->
+    <div class="case-body">
+      <h2>Результаты</h2>
+      <p>Рост конверсии в создание карт лояльности ЦУМ внутри Альфа: Абсолютный рост 12,8 п.п., относительный 38,24%.</p>
+      <p>Увеличение Retention, среди премиум юзеров, увеличилось на 43%.</p>
+    </div>
+
+  </div>
+
+<script>
+document.querySelectorAll('.collapsible-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.collapsible');
+    const content = parent.querySelector('.collapsible-content');
+    const inner = content.querySelector('.collapsible-content-inner');
+    if (parent.classList.contains('open')) {
+      content.style.height = content.scrollHeight + 'px';
+      requestAnimationFrame(() => { content.style.height = '0'; });
+      parent.classList.remove('open');
+    } else {
+      parent.classList.add('open');
+      content.style.height = inner.offsetHeight + 'px';
+      content.addEventListener('transitionend', () => {
+        if (parent.classList.contains('open')) content.style.height = 'auto';
+      }, { once: true });
+    }
+  });
+});
+
+document.querySelectorAll('.case-back').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    document.querySelector('.case-page').style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.querySelector('.case-page').style.opacity = '0';
+    document.querySelector('.case-page').style.transform = 'translateY(15px)';
+    setTimeout(() => { window.location.href = href; }, 1000);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Overchat — Design System — Кузнецова Анастасия</title>
+<link rel="stylesheet" href="../style.css" />
+<style>
+  html, body { overflow: auto; height: auto; background: #fff; }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .case-page { max-width: 1200px; margin: 0 auto; padding: 40px 25px 80px; animation: fadeSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) both; }
+  .case-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 400; color: #171717; margin-bottom: 40px; transition: opacity 180ms; }
+  .case-back:hover { opacity: 0.5; }
+  .case-back svg { width: 16px; height: 16px; }
+  .case-header { margin-bottom: 40px; }
+  .case-header h1 { font-size: 48px; font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; color: #171717; margin-bottom: 8px; }
+  .case-header .case-subtitle { font-size: 18px; color: #777; font-weight: 400; }
+  .case-header .case-meta-row { display: flex; gap: 24px; margin-top: 16px; font-size: 14px; color: #171717; }
+  .case-gallery-full img,
+  .case-gallery-full video { width: 100%; border-radius: 8px; display: block; }
+  .case-gallery-full video { aspect-ratio: 16 / 9; object-fit: cover; }
+  .case-gallery-full { margin: 0; }
+  .case-body { max-width: 100%; margin-top: 24px; }
+  .case-body + .case-body { margin-top: 0; }
+  .case-body + .case-gallery-full { margin-top: 40px; }
+  .case-gallery-full + .case-body { margin-top: 48px; }
+  .case-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .case-two-col img { width: 100%; border-radius: 8px; display: block; }
+  .case-body p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
+  .case-body p strong { font-weight: 500; }
+  .case-body h2 { font-size: 36px; font-weight: 500; margin: 0 0 40px; color: #171717; }
+
+  .highlight-block {
+    background: #F3F3F3;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 8px 0 24px;
+    display: flex;
+    align-items: center;
+  }
+  .highlight-block p {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #171717;
+    margin-bottom: 0;
+  }
+
+  .collapsible { padding: 16px 0; }
+  .collapsible:first-of-type { border-top: 1px solid #eee; padding-top: 24px; }
+  .collapsible-toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #171717;
+    padding: 0;
+    text-align: left;
+  }
+  .collapsible-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    margin-top: 2px;
+    background: #e9e9e9;
+    backdrop-filter: blur(23px);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .collapsible-icon .line {
+    position: absolute;
+    width: 14px;
+    height: 1px;
+    background: #1a1a1a;
+    transition: transform 0.4s ease;
+  }
+  .collapsible-icon .line:first-child { transform: rotate(0deg); }
+  .collapsible-icon .line:last-child { transform: rotate(90deg); }
+  .collapsible.open .collapsible-icon .line:last-child { transform: rotate(0deg); }
+  .collapsible-content { overflow: hidden; height: 0; transition: height 0.5s ease; }
+  .collapsible-content-inner { padding-top: 24px; }
+  .collapsible-content-inner p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
+  .collapsible-content-inner .highlight-block p { font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 0; color: #171717; }
+
+  .label-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; background: #efefef; color: #000;
+    border-radius: 2px; font-size: 11px; font-weight: 500;
+    margin-right: 4px; vertical-align: middle;
+  }
+  .label-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; background: #777; color: #000;
+    border-radius: 50%; font-size: 11px; font-weight: 500;
+    margin-right: 8px; vertical-align: middle;
+  }
+  .plan-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+  .plan-item .plan-badges { display: flex; gap: 4px; margin-top: 3px; flex-shrink: 0; }
+  .plan-item p { margin-bottom: 0; }
+</style>
+</head>
+<body>
+  <div class="case-page">
+    <a href="../index.html" class="case-back">
+      <svg viewBox="0 0 16 16"><path d="M10 3 L5 8 L10 13" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      Назад
+    </a>
+    <div class="case-header">
+      <h1>Overchat — Design System</h1>
+    </div>
+    <div class="case-gallery-full">
+      <img src="../media/obloga.png" alt="Overchat Design System">
+    </div>
+
+    <!-- О проекте -->
+    <div class="case-body">
+      <h2>О проекте</h2>
+      <p>За одну неделю я спроектировала и собрала кроссплатформенную дизайн-систему ELMO для AI-стартапа Overchat. Система покрывает три платформы — Web, iOS и Android — и стала основой для 1 000+ экранов продукта.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Проблема -->
+    <div class="case-body">
+      <h2>Проблема</h2>
+      <p>Overchat быстро рос: расширялась команда, добавлялись новые фичи, параллельно разрабатывались веб и мобильные версии. При этом единой системы не существовало — каждый экран собирался с нуля, компоненты дублировались, а визуальная консистентность между платформами терялась. Это замедляло дизайн, усложняло передачу в разработку и создавало рассогласованность в продукте.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Задача -->
+    <div class="case-body">
+      <h2>Задача</h2>
+      <p>Создать единую дизайн-систему, которая:</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">Обеспечит визуальную и функциональную консистентность на Web, iOS и Android</p></div>
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">Ускорит сборку экранов и сократит time-to-market для новых фич</p></div>
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px; grid-column: 1 / -1;"><p style="margin-bottom: 0;">Упростит коммуникацию между дизайном и разработкой за счёт чётких спецификаций и code-ready компонентов</p></div>
+      </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Структура системы -->
+    <div class="case-body">
+      <h2>Структура системы</h2>
+      <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px;"><p style="margin-bottom: 0; font-weight: 500;">Токены</p></div>
+      <p><strong>Типографика.</strong> Единая типографическая шкала на шрифте Geist — от display (40px, SemiBold) до мелких подписей (12px, Regular). Для каждого стиля прописаны размер, line-height и начертание с учётом особенностей рендеринга на каждой платформе.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/ds4/ds4-new/type.png" alt="Типографика">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p><strong>Цветовая палитра.</strong> Развёрнутая палитра с градациями для каждого цветового семейства: от насыщенных акцентных до приглушённых фоновых оттенков. Палитра адаптирована под Web, iOS и Android — учитывает различия в отображении цветов на разных экранах.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/ds4/ds4-new/color.png" alt="Цветовая палитра">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px;"><p style="margin-bottom: 0; font-weight: 500;">Иконки</p></div>
+      <p>Шесть специализированных наборов, каждый доступен в версиях для Web, iOS и Android:</p>
+    </div>
+
+    <div class="collapsible" style="border-top: none; padding-top: 8px;">
+      <button class="collapsible-toggle" style="font-size: 20px;">
+        <span class="collapsible-icon" style="width: 24px; height: 24px; min-width: 24px;"><span class="line" style="width: 10px;"></span><span class="line" style="width: 10px;"></span></span>
+        Icons — базовый набор интерфейсных иконок
+      </button>
+      <div class="collapsible-content"><div class="collapsible-content-inner"><div class="case-gallery-full"><img src="../media/ds4/ds4-new/Icons/icons.png" alt="Icons"></div></div></div>
+    </div>
+
+    <div class="collapsible" style="border-top: none; padding-top: 0;">
+      <button class="collapsible-toggle" style="font-size: 20px;">
+        <span class="collapsible-icon" style="width: 24px; height: 24px; min-width: 24px;"><span class="line" style="width: 10px;"></span><span class="line" style="width: 10px;"></span></span>
+        Flags — флаги стран для локализации
+      </button>
+      <div class="collapsible-content"><div class="collapsible-content-inner"><div class="case-gallery-full"><img src="../media/ds4/ds4-new/Icons/flags.png" alt="Flags"></div></div></div>
+    </div>
+
+    <div class="collapsible" style="border-top: none; padding-top: 0;">
+      <button class="collapsible-toggle" style="font-size: 20px;">
+        <span class="collapsible-icon" style="width: 24px; height: 24px; min-width: 24px;"><span class="line" style="width: 10px;"></span><span class="line" style="width: 10px;"></span></span>
+        AI Models — иконки AI-моделей (ChatGPT, Claude, Gemini и др.)
+      </button>
+      <div class="collapsible-content"><div class="collapsible-content-inner"><div class="case-gallery-full"><img src="../media/ds4/ds4-new/Icons/ai-models.png" alt="AI Models"></div></div></div>
+    </div>
+
+    <div class="collapsible" style="border-top: none; padding-top: 0;">
+      <button class="collapsible-toggle" style="font-size: 20px;">
+        <span class="collapsible-icon" style="width: 24px; height: 24px; min-width: 24px;"><span class="line" style="width: 10px;"></span><span class="line" style="width: 10px;"></span></span>
+        Documents — типы файлов и документов
+      </button>
+      <div class="collapsible-content"><div class="collapsible-content-inner"><div class="case-gallery-full"><img src="../media/ds4/ds4-new/Icons/documents.png" alt="Documents"></div></div></div>
+    </div>
+
+    <div class="collapsible" style="border-top: none; padding-top: 0;">
+      <button class="collapsible-toggle" style="font-size: 20px;">
+        <span class="collapsible-icon" style="width: 24px; height: 24px; min-width: 24px;"><span class="line" style="width: 10px;"></span><span class="line" style="width: 10px;"></span></span>
+        Avatars — пользовательские аватары
+      </button>
+      <div class="collapsible-content"><div class="collapsible-content-inner"><div class="case-gallery-full"><img src="../media/ds4/ds4-new/Icons/avatars.png" alt="Avatars"></div></div></div>
+    </div>
+
+    <div class="collapsible" style="border-top: none; padding-top: 0;">
+      <button class="collapsible-toggle" style="font-size: 20px;">
+        <span class="collapsible-icon" style="width: 24px; height: 24px; min-width: 24px;"><span class="line" style="width: 10px;"></span><span class="line" style="width: 10px;"></span></span>
+        Platforms — иконки платформ и сервисов
+      </button>
+      <div class="collapsible-content"><div class="collapsible-content-inner"><div class="case-gallery-full"><img src="../media/ds4/ds4-new/Icons/platforms.png" alt="Platforms"></div></div></div>
+    </div>
+
+    <!-- UI-компоненты -->
+    <div class="case-body" style="margin-top: 32px;">
+      <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px;"><p style="margin-bottom: 0; font-weight: 500;">UI-компоненты</p></div>
+      <p>Более 20 компонентов, большинство — с поддержкой code export для быстрой передачи в разработку:</p>
+      <p>badge, button, sidebar, loaders, card, message, notification, label, chips, bubble, header, bottomBar, lists, radiobuttons, iconButton, input, snackbar, helper-buttons, links, dropdown и другие.</p>
+      <p>Каждый компонент спроектирован с вариантами состояний, адаптирован под три платформы и готов к использованию «из коробки».</p>
+    </div>
+
+    <div class="case-two-col" style="margin-top: 24px;">
+      <img src="../media/ds4/ds4-new/1.png" alt="UI компонент 1">
+      <img src="../media/ds4/ds4-new/2.png" alt="UI компонент 2">
+      <img src="../media/ds4/ds4-new/3.png" alt="UI компонент 3">
+      <img src="../media/ds4/ds4-new/4.png" alt="UI компонент 4">
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Подход -->
+    <div class="case-body">
+      <h2>Подход</h2>
+      <p>При проектировании ELMO я придерживалась нескольких принципов:</p>
+      <p><strong>Кроссплатформенность как основа.</strong> Каждый элемент системы — от токенов до компонентов — существует в трёх версиях: [web], [ios], [android]. Это не три отдельных системы, а единая архитектура с платформенными адаптациями.</p>
+      <p><strong>Code-ready компоненты.</strong> Большинство компонентов подготовлены к экспорту в код — это сокращает разрыв между макетами и реализацией и снижает количество итераций при передаче в разработку.</p>
+      <p><strong>Масштабируемость.</strong> Система построена так, чтобы новые компоненты и токены легко добавлялись без нарушения существующей структуры. Это критично для стартапа, где продукт меняется быстро.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 24px;">
+      <img src="../media/ds4/ds4-new/6po.png" alt="Подход 6" style="width: 100%; border-radius: 8px; display: block;">
+      <img src="../media/ds4/ds4-new/7po.png" alt="Подход 7" style="width: 100%; border-radius: 8px; display: block;">
+      <img src="../media/ds4/ds4-new/8po.png" alt="Подход 8" style="width: 100%; border-radius: 8px; display: block;">
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-top: 12px;">
+      <img src="../media/ds4/ds4-new/2po.png" alt="Подход 2" style="width: 100%; border-radius: 8px; display: block;">
+      <img src="../media/ds4/ds4-new/3po.png" alt="Подход 3" style="width: 100%; border-radius: 8px; display: block;">
+      <img src="../media/ds4/ds4-new/4po.png" alt="Подход 4" style="width: 100%; border-radius: 8px; display: block;">
+      <img src="../media/ds4/ds4-new/5po.png" alt="Подход 5" style="width: 100%; border-radius: 8px; display: block;">
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 12px; margin-top: 12px;">
+      <img src="../media/ds4/ds4-new/10po.png" alt="Подход 10" style="width: 100%; border-radius: 8px; display: block;">
+      <img src="../media/ds4/ds4-new/11po.png" alt="Подход 11" style="width: 100%; border-radius: 8px; display: block;">
+      <img src="../media/ds4/ds4-new/12po.png" alt="Подход 12" style="width: 100%; border-radius: 8px; display: block;">
+      <img src="../media/ds4/ds4-new/13po.png" alt="Подход 13" style="width: 100%; border-radius: 8px; display: block;">
+      <img src="../media/ds4/ds4-new/14po.png" alt="Подход 14" style="width: 100%; border-radius: 8px; display: block;">
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Результат -->
+    <div class="case-body">
+      <h2>Результат</h2>
+      <p><strong>1 000+ экранов</strong> собрано на базе ELMO за время работы над Overchat — это подтверждает, что система работает не в теории, а в продакшене.</p>
+      <p><strong>3 платформы</strong> — Web, iOS и Android — покрыты единой системой, что обеспечивает консистентный пользовательский опыт вне зависимости от устройства.</p>
+      <p><strong>2 недели</strong> — срок создания первой версии системы. Быстрый запуск позволил команде сразу начать работать по единым стандартам, а не ждать «идеальную» систему месяцами.</p>
+      <p><strong>20+ компонентов</strong> с поддержкой code export — разработчики получают готовые спецификации, а не интерпретируют макеты на глаз.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/ds4/ds4-new/result.png" alt="Результат">
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Что дальше -->
+    <div class="case-body">
+      <h2>Что дальше</h2>
+      <p>ELMO продолжает развиваться вместе с продуктом. В планах — расширение библиотеки паттернов (составных шаблонов экранов), добавление тёмной темы и углубление документации с гайдлайнами по использованию каждого компонента.</p>
+    </div>
+
+  </div>
+
+<script>
+document.querySelectorAll('.collapsible-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.collapsible');
+    const content = parent.querySelector('.collapsible-content');
+    const inner = content.querySelector('.collapsible-content-inner');
+    if (parent.classList.contains('open')) {
+      content.style.height = content.scrollHeight + 'px';
+      requestAnimationFrame(() => { content.style.height = '0'; });
+      parent.classList.remove('open');
+    } else {
+      parent.classList.add('open');
+      content.style.height = inner.offsetHeight + 'px';
+      content.addEventListener('transitionend', () => {
+        if (parent.classList.contains('open')) content.style.height = 'auto';
+      }, { once: true });
+    }
+  });
+});
+
+document.querySelectorAll('.case-back').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    document.querySelector('.case-page').style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.querySelector('.case-page').style.opacity = '0';
+    document.querySelector('.case-page').style.transform = 'translateY(15px)';
+    setTimeout(() => { window.location.href = href; }, 1000);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Долями x Lamoda — мобильное приложение — Кузнецова Анастасия</title>
+<link rel="stylesheet" href="../style.css" />
+<style>
+  html, body { overflow: auto; height: auto; background: #fff; }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .case-page { max-width: 1200px; margin: 0 auto; padding: 40px 25px 80px; animation: fadeSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) both; }
+  .case-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 400; color: #171717; margin-bottom: 40px; transition: opacity 180ms; }
+  .case-back:hover { opacity: 0.5; }
+  .case-back svg { width: 16px; height: 16px; }
+  .case-header { margin-bottom: 40px; }
+  .case-header h1 { font-size: 48px; font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; color: #171717; margin-bottom: 8px; }
+  .case-header .case-subtitle { font-size: 18px; color: #777; font-weight: 400; }
+  .case-header .case-meta-row { display: flex; gap: 24px; margin-top: 16px; font-size: 14px; color: #171717; }
+  .case-gallery-full img,
+  .case-gallery-full video { width: 100%; border-radius: 8px; display: block; }
+  .case-gallery-full video { aspect-ratio: 16 / 9; object-fit: cover; }
+  .case-gallery-full { margin: 0; }
+  .case-body { max-width: 100%; margin-top: 24px; }
+  .case-body + .case-body { margin-top: 0; }
+  .case-body + .case-gallery-full { margin-top: 40px; }
+  .case-gallery-full + .case-body { margin-top: 48px; }
+  .case-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .case-two-col img { width: 100%; border-radius: 8px; display: block; }
+  .case-body p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
+  .case-body p strong { font-weight: 500; }
+  .case-body h2 { font-size: 36px; font-weight: 500; margin: 0 0 40px; color: #171717; }
+
+  .highlight-block {
+    background: #F3F3F3;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 8px 0 24px;
+    display: flex;
+    align-items: center;
+  }
+  .highlight-block p {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #171717;
+    margin-bottom: 0;
+  }
+
+  .collapsible { padding: 16px 0; }
+  .collapsible:first-of-type { border-top: 1px solid #eee; padding-top: 24px; }
+  .collapsible-toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #171717;
+    padding: 0;
+    text-align: left;
+  }
+  .collapsible-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    margin-top: 2px;
+    background: #e9e9e9;
+    backdrop-filter: blur(23px);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .collapsible-icon .line {
+    position: absolute;
+    width: 14px;
+    height: 1px;
+    background: #1a1a1a;
+    transition: transform 0.4s ease;
+  }
+  .collapsible-icon .line:first-child { transform: rotate(0deg); }
+  .collapsible-icon .line:last-child { transform: rotate(90deg); }
+  .collapsible.open .collapsible-icon .line:last-child { transform: rotate(0deg); }
+  .collapsible-content { overflow: hidden; height: 0; transition: height 0.5s ease; }
+  .collapsible-content-inner { padding-top: 24px; }
+  .collapsible-content-inner p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
+  .collapsible-content-inner .highlight-block p { font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 0; color: #171717; }
+
+  .label-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; background: #efefef; color: #000;
+    border-radius: 2px; font-size: 11px; font-weight: 500;
+    margin-right: 4px; vertical-align: middle;
+  }
+  .label-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; background: #777; color: #000;
+    border-radius: 50%; font-size: 11px; font-weight: 500;
+    margin-right: 8px; vertical-align: middle;
+  }
+  .plan-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+  .plan-item .plan-badges { display: flex; gap: 4px; margin-top: 3px; flex-shrink: 0; }
+  .plan-item p { margin-bottom: 0; }
+</style>
+</head>
+<body>
+  <div class="case-page">
+    <a href="../index.html" class="case-back">
+      <svg viewBox="0 0 16 16"><path d="M10 3 L5 8 L10 13" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      Назад
+    </a>
+    <div class="case-header">
+      <h1>Долями x Lamoda — мобильное приложение</h1>
+    </div>
+    <div class="case-gallery-full">
+      <img src="../media/case5-new.png" alt="Долями x Lamoda">
+    </div>
+
+    <!-- О проекте -->
+    <div class="case-body">
+      <h2>О проекте</h2>
+      <p><strong>Долями</strong> — BNPL-сервис от Т-Банка. Делит покупку на 4 равных платежа раз в 2 недели, без процентов. Работает в чекаутах Lamoda, Золотого Яблока, Лэтуаль и других магазинов.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Проблема -->
+    <div class="case-body">
+      <h2>Проблема</h2>
+      <p>Пользователи видят кнопку «Оплатить Долями», но боятся нажать. Триггеры: «это кредит», «будут скрытые проценты», «испортит кредитную историю». Высокий drop-off на этапе выбора способа оплаты.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Задача -->
+    <div class="case-body">
+      <h2>Задача</h2>
+      <p>Переосмыслить виджет в чекауте Lamoda и первый экран онбординга. Цель: пользователь за 3 секунды понимает — это не кредит, это бесплатно, это быстро.</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Исследование (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Исследование: почему боятся рассрочки?
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Начала с анализа реальных отзывов пользователей Долями. Выделила три ключевых страха:</p>
+          <p><strong>Кредитофобия</strong> — «Я не хочу связываться с кредитами ради кроссовок. Вдруг это пойдет в БКИ?»</p>
+          <p><strong>Сложность</strong> — «Сейчас заставят паспорт фоткать, анкету заполнять... Проще картой оплатить сразу.»</p>
+          <p><strong>Забывчивость</strong> — «А если я забуду, когда следующий платеж? Меня оштрафуют?»</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/lamoda/research.png" alt="Исследование">
+          </div>
+          <p>Отдельно зафиксировала: после введения сервисного сбора негатив в отзывах резко вырос. Пользователи воспринимают его как скрытую переплату и уходят к конкурентам, которые обещают «0% и без комиссий».</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Сегментация (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Сегментация
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Выделила 3 сегмента по отношению к деньгам и рискам:</p>
+          <p><strong>Скептик</strong> — ищет подвох, читает отзывы, боится скрытых списаний. Если видит что-то похожее на кредит или комиссию — уходит. Возвращается только после повторной проверки условий. Главная цель: оплатить частями без ощущения долга.</p>
+          <p><strong>Контролёр</strong> — прагматик, планирует расходы. Имеет средства, но не хочет изымать всё из оборота сразу. Использует сервис как инструмент планирования бюджета. Сравнивает сценарии: если Долями берёт комиссию, а конкуренты нет — уходит туда, где выгоднее.</p>
+          <p><strong>Импульсивный</strong> — решения принимает быстро, ориентируется на удобство и эмоции. Любая задержка, сложное оформление или требование паспорта разрушают импульс покупки. Частота зависит от триггеров: праздники, акции, новинки.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/lamoda/segments.png" alt="Сегменты">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JTBD (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Джобсы
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Для каждого сегмента сформулировала Job Story:</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/lamoda/jobs.png" alt="JTBD">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Конкурентный анализ (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Конкурентный анализ
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Разобрала BNPL-флоу 5 платформ: Lamoda (текущий), Яндекс Маркет/Сплит, Лэтуаль, Golden Apple, Авито/Плайт. Для каждой — полный путь от карточки товара до оплаты с аннотациями.</p>
+          <p><strong>Ключевые находки:</strong></p>
+          <p>Яндекс Сплит показывает комиссию в рублях, а не в процентах — это снижает тревожность. Тумблер позволяет включить Сплит прямо в корзине, не заходя в чекаут.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/lamoda/k1.png" alt="Конкурентный анализ — Яндекс Сплит">
+          </div>
+          <p>Golden Apple продаёт категорию BNPL целиком, а не конкретный сервис. В точке сравнения на фоне Сплита и Подели, обещающих «без процентов и переплат», подпись Долями «возможен сервисный сбор» выглядит как предупреждение об угрозе.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/lamoda/k2.png" alt="Конкурентный анализ — Golden Apple">
+          </div>
+          <p>Лэтуаль использует механику аккордеона — 4 платежа видны сразу в списке методов оплаты.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/lamoda/k3.png" alt="Конкурентный анализ — Лэтуаль">
+          </div>
+          <p>Авито/Плайт минимизирует барьер входа: первый платёж от 1 рубля, бейдж «0%» на бесплатном тарифе.</p>
+          <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin: 8px 0 24px;"><p style="margin-bottom: 0; font-weight: 500;">Вывод: у нового пользователя Lamoda нет рациональных причин выбрать Долями среди конкурентов.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Гипотезы (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Гипотезы
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>На основе отзывов, сегментации и конкурентного анализа сформулировала 7 продуктовых гипотез с привязкой к метрикам и 6 поведенческих гипотез.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <div style="width:100%;aspect-ratio:16/9;background:#F3F3F3;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#999;font-size:16px;">Место под фото</div>
+          </div>
+          <p>Далее приоритизировала гипотезы по методу ICE и выделила ключевые для кастдева.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Глубинные интервью (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Глубинные интервью
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Составила два гайда: для активных пользователей BNPL (6 блоков вопросов) и для избегающих (4 блока). Провела глубинные интервью, проверила каждую гипотезу на каждом респонденте.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <div style="width:100%;aspect-ratio:16/9;background:#F3F3F3;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#999;font-size:16px;">Место под фото</div>
+          </div>
+          <p><strong>Алекс (Скептик)</strong> — платит дебетовой, принцип «трачу только то, что есть». Долями = «кабала», «кнопка для ленивых». Не боится проверок данных — боится потерять финансовую дисциплину. Скорость оформления его отпугивает: «Я воспринимаю это как кнопку игрового автомата». Единственное, что заинтересовало — гипотеза с резервированием средств под процент.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/lamoda/in1.png" alt="Алекс — Скептик">
+          </div>
+          <p><strong>Ольга (Тревожная)</strong> — избегает кнопку, думает, что нажмёшь и «сразу повесят кредит». Долями = «микрозайм», «мошенничество». Но слово «рассрочка» воспринимает спокойно. Не знала, что сервис от Т-Банка — когда узнала, доверие резко выросло. Готова попробовать на маленькой сумме (1000₽) как тест-драйв.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/lamoda/in2.png" alt="Ольга — Тревожная">
+          </div>
+          <p><strong>Настя (Прагматик)</strong> — активный пользователь, покупает через Подели и Сплит. Использует BNPL не от нужды, а чтобы купить больше вещей сразу. Но скрывает это от подруг: «Стыдно сказать, звучит как я бедная». Боялась, что данные уйдут в БКИ и не дадут ипотеку.</p>
+          <div class="case-gallery-full" style="margin: 24px 0;">
+            <img src="../media/lamoda/in3.png" alt="Настя — Прагматик">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Сводка (collapsible) -->
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Сводка: что подтвердилось, а что нет
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p style="color: #2E7D32;"><strong>Прозрачность цены</strong> — подтверждено всеми тремя. Комиссии и условия ок, если честно показано сразу.</p>
+          <p style="color: #2E7D32;"><strong>Наглядный процесс</strong> — сильнейший триггер у тревожных: «боюсь нажать и сразу повесят кредит». Скептикам тоже важна осознанность.</p>
+          <p style="color: #2E7D32;"><strong>Анти-бюрократия</strong> — для Насти и Ольги снимает главный страх входа. Для Алекса нейтрально.</p>
+          <p style="color: #2E7D32;"><strong>Бренд банка</strong> — критично для Ольги: убирает ассоциацию с МФО. У тревожных резко растит доверие.</p>
+          <p style="color: #F9A825;"><strong>Автономный контроль</strong> — все по-разному. Нужна контролируемая автономия: уведомления заранее, выбор «авто/вручную».</p>
+          <p style="color: #C62828;"><strong>Простота vs скорость</strong> — не подтверждено у всех трёх. Скорость снижает доверие. Не продавать «в 1 клик», а добавить «умное трение»: шаги, чекбоксы, экран подтверждения.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Решение -->
+    <div class="case-body">
+      <h2>Решение</h2>
+      <p>Спроектировала полный флоу Долями в трёх этапах:</p>
+      <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px;"><p style="margin-bottom: 0; font-weight: 500;">Старт оформления</p></div>
+      <p>Компактный бейдж на карточке товара, bottom sheet с графиком платежей и снятием страхов, аккордеон в корзине с тогглом и иконкой Т‑Банка на CTA для повышения доверия — три точки касания, которые проводят пользователя от интереса до оплаты без выхода из воронки.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/lamoda/1.png" alt="Старт оформления">
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px;"><p style="margin-bottom: 0; font-weight: 500;">Идентификация</p></div>
+      <p>Для авторизированного пользователя при предзаполненных полях — ФИО, дата рождения, почта. Сабтайтл «кредитный договор не оформляется» снимает главный страх из исследования (7 из 10 ассоциировали сервис с микрозаймом).</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/lamoda/2.png" alt="Идентификация">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p>Минимальная форма: одно поле + кнопка. Нет лишних шагов — порог входа максимально низкий.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/lamoda/3.png" alt="Минимальная форма">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p>Для нового пользователя те же три поля без паспорта — форма не выглядит как заявка на кредит. Тот же сабтайтл про отсутствие кредитного договора.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/lamoda/4.png" alt="Решение">
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <div class="case-body">
+      <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px;"><p style="margin-bottom: 0; font-weight: 500;">Подтверждение и оплата</p></div>
+      <p>Визуально экран оплаты ближе к лайфстайл-сервису, чем к банковскому интерфейсу — карточка с кастомным градиентом. Платёжные методы переработаны: вместо ручного ввода реквизитов — быстрые кнопки AlfaPay, SberPay, СБП и T‑Pay с переходом в приложение банка. Ввод карты вручную остался, но как запасной вариант, а не основной сценарий.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/lamoda/5.png" alt="Подтверждение и оплата">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p>Ручной ввод карты остаётся как запасной сценарий — сервис запоминает её и при следующей покупке показывает в ряду сохранённых, сводя повторную оплату к одному касанию.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/lamoda/6.png" alt="Ручной ввод карты">
+    </div>
+
+    <div class="case-body" style="margin-top: 32px;">
+      <p>Три bottom sheet поверх экрана оплаты — каждый раскрывается по тапу на соответствующий элемент: info-иконка показывает объяснение сервисного сбора простым языком, ссылка «1 товар» раскрывает состав заказа с ценой, поле промокода — ввод и применение скидки. Вся дополнительная информация доступна без ухода с экрана оплаты.</p>
+    </div>
+
+    <div class="case-gallery-full" style="margin-top: 24px;">
+      <img src="../media/lamoda/7.png" alt="Bottom sheets">
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+    <!-- Продуктовые выводы -->
+    <div class="case-body">
+      <h2>Продуктовые выводы</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">Анализ отзывов оказался ценнее, чем я ожидала. Страхи пользователей не про интерфейс — про восприятие категории. Пока виджет выглядит «по-банковски», никакой редизайн кнопок не поможет.</p></div>
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">Интервью опровергли одну из главных гипотез: «простота и скорость = конверсия». Все три респондента сказали обратное — скорость оформления вызывает подозрения, а не доверие. Это развернуло концепцию: вместо «оформи за 10 секунд» — наглядные шаги, подтверждения, контроль.</p></div>
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">Конкурентный анализ показал, что Долями проигрывает не по продукту, а по коммуникации. В одном меню выбора Сплит и Подели обещают «без процентов», а Долями предупреждает о «возможном сборе» — это проигранная битва до начала.</p></div>
+        <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">ICE-приоритизация отсекла слабые гипотезы на старте. Smart Reserve, соцдоказательство, микро-лояльность — интересные идеи, но с низким ICE-скором. Без приоритизации я бы пыталась реализовать всё и размыла бы фокус.</p></div>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+document.querySelectorAll('.collapsible-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.collapsible');
+    const content = parent.querySelector('.collapsible-content');
+    const inner = content.querySelector('.collapsible-content-inner');
+    if (parent.classList.contains('open')) {
+      content.style.height = content.scrollHeight + 'px';
+      requestAnimationFrame(() => { content.style.height = '0'; });
+      parent.classList.remove('open');
+    } else {
+      parent.classList.add('open');
+      content.style.height = inner.offsetHeight + 'px';
+      content.addEventListener('transitionend', () => {
+        if (parent.classList.contains('open')) content.style.height = 'auto';
+      }, { once: true });
+    }
+  });
+});
+
+document.querySelectorAll('.case-back').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    document.querySelector('.case-page').style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.querySelector('.case-page').style.opacity = '0';
+    document.querySelector('.case-page').style.transform = 'translateY(15px)';
+    setTimeout(() => { window.location.href = href; }, 1000);
+  });
+});
+</script>
+</body>
+</html>

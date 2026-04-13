@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ювелирцентр — Кузнецова Анастасия</title>
+<link rel="stylesheet" href="../style.css" />
+<style>
+  html, body { overflow: auto; height: auto; background: #fff; }
+  
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .case-page { animation: fadeSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) both; }
+
+  .case-page { max-width: 1100px; margin: 0 auto; padding: 40px 25px 100px; }
+
+  .case-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; color: #171717; margin-bottom: 48px; transition: opacity 180ms; }
+  .case-back:hover { opacity: 0.5; }
+  .case-back svg { width: 16px; height: 16px; }
+
+  .case-meta-top { display: flex; gap: 16px; font-size: 13px; color: #171717; margin-bottom: 24px; }
+
+  .case-page h1 {
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #171717;
+    margin-bottom: 12px;
+  }
+  .case-page .lead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #555;
+    font-weight: 400;
+    margin-bottom: 48px;
+  }
+
+  .case-page h2 {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #171717;
+    margin: 48px 0 16px;
+  }
+  .case-page h3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #171717;
+    margin: 32px 0 12px;
+  }
+
+  .case-page p {
+    font-size: 20px;
+    line-height: 1.65;
+    color: #333;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .case-page p strong { color: #171717; font-weight: 500; }
+
+  .highlight-block {
+    background: #F3F3F3;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 8px 0 24px;
+  }
+  .highlight-block p {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: #171717;
+    margin-bottom: 0;
+  }
+
+  .collapsible {
+    padding: 16px 0;
+  }
+  .collapsible:first-of-type {
+    border-top: 1px solid #eee;
+    padding-top: 24px;
+  }
+  .collapsible-toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #171717;
+    padding: 0;
+    text-align: left;
+  }
+  .collapsible-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    margin-top: 0;
+    background: #e9e9e9;
+    backdrop-filter: blur(23px);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .collapsible-icon .line {
+    position: absolute;
+    width: 18px;
+    height: 1px;
+    background: #1a1a1a;
+    transition: transform 0.5s ease;
+  }
+  .collapsible-icon .line:first-child { transform: rotate(0deg); }
+  .collapsible-icon .line:last-child { transform: rotate(90deg); }
+  .collapsible.open .collapsible-icon .line:first-child { transform: rotate(0deg); }
+  .collapsible.open .collapsible-icon .line:last-child { transform: rotate(0deg); }
+  .collapsible-content {
+    overflow: hidden;
+    height: 0;
+    transition: height 0.5s ease;
+  }
+  .collapsible-content-inner {
+    padding-top: 16px;
+  }
+
+  .case-page hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 40px 0;
+  }
+
+  .case-media { margin: 40px 0; }
+  .case-media {
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 40px 0;
+  }
+  .case-media img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+  }
+  .case-media video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .case-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 40px 0;
+  }
+  .case-two-col img,
+  .case-two-col video {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .case-footer-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .case-footer-nav a { color: #171717; transition: opacity 180ms; }
+  .case-footer-nav a:hover { opacity: 0.5; }
+</style>
+</head>
+<body>
+  <div class="case-page">
+    <a href="../index.html" class="case-back">
+      <svg viewBox="0 0 16 16"><path d="M10 3 L5 8 L10 13" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      Назад к портфолио
+    </a>
+
+    <h1>Ювелирцентр — мобильное приложение</h1>
+
+    <div class="case-media">
+      <img src="../media/uvc/cover.png" alt="Ювелирцентр">
+    </div>
+
+    <div class="case-media">
+      <img src="../media/uvc/title.png" alt="Ювелирцентр — титульное">
+    </div>
+
+    <h2>О компании</h2>
+    <p><strong>Ювелирцентр</strong> — розничная ювелирная сеть с офлайн-магазинами по всей России. Компания теряла потенциальных клиентов: пользователи, знакомые с брендом офлайн, не могли удобно покупать онлайн. Задача — спроектировать мобильное приложение, которое конвертирует офлайн-лояльность в онлайн-продажи.</p>
+
+    <hr>
+
+    <h2>Моя роль</h2>
+    <div class="highlight-block">
+      <p>Единственный дизайнер на проекте. Полный цикл: исследования → сегментация → JTBD → discovery → бенчмарки → проектирование iOS и Android → юзабилити-тестирование. Напрямую с бизнес-заказчиком.</p>
+    </div>
+    <p>У проекта было два фокуса, которые нужно было свести в одном интерфейсе.</p>
+
+    <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Бизнес</p></div>
+    <p>Увеличить онлайн-продажи. Снизить отток на этапе выбора. Выстроить единый опыт для клиентов, знакомых с брендом офлайн. Приложение должно усиливать розничные точки, а не отбирать у них трафик.</p>
+
+    <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Пользователь</p></div>
+    <p>Сделать выбор украшений понятным и спокойным. Помочь быстрее сориентироваться в ассортименте, получить всю информацию и принять решение — без ощущения давления или перегруженности.</p>
+
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Кто покупает ювелирку онлайн?
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Для построения продукта и последующего юзабилити-тестирования я выделила 5 B2C-сегментов по жизненным ситуациям. Для каждого — зафиксировала мотивацию, сценарий покупки, частоту и конкурентов</p>
+          <p>Самый платёжеспособный сегмент — <strong>женщины 20–40 лет</strong>. Они покупают сами, мотивируют мужской сегмент на покупки, и дополнительно рекомендуют сервис друзьям и знакомым.</p>
+          <p>(+) дополнительно мотивируют супругов/парней<br>(+) готовы рекомендовать сервис друзьям и знакомым<br>(+) покупают сами, легко подвержены скидкам</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0;">
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Взрослые женщины</p></div>
+              <p>Ценят эстетику, покупают часто для себя. Важны качественные фото и понятное ценообразование. Легко подвержены скидкам. Конкуренты: Sokolov, Adamas.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Мужчины 20–30 лет</p></div>
+              <p>Покупают в подарок близким или женщине. Важно быстрое оформление и удобная доставка, удобство интерфейса. Конкуренты: Poison Drop, Sokolov, Miuz.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Собиратели и фанаты</p></div>
+              <p>Ищут эксклюзив, мониторят паблики и новые коллекции. Категоризация и нотификации играют ключевую роль. Конкуренты: Adamas, Poison Drop.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Дарители</p></div>
+              <p>Покупают 2–3 раза в год по праздникам. Не импульсивная покупка — ждут скидки и выборку. Чувствительны к бонусной программе.</p>
+            </div>
+          </div>
+          <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px; margin-bottom: 16px;"><p style="margin-bottom: 0;">Серия интервью с покупателями и анализ Яндекс.Метрики показали одно и то же: пользователи уходят не потому, что им не нравится ассортимент, а потому что <strong>тонут в нём</strong>. Сотни похожих товаров, неочевидная навигация, перегруженные страницы. Главная задача — снизить когнитивную нагрузку при выборе. Интерфейс должен направлять, а не показывать всё сразу.</p></div>
+          <div class="case-media">
+            <div style="width:100%;aspect-ratio:16/9;background:#F3F3F3;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#999;font-size:16px;">Место под фото</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Анализ структуры e-commerce приложений<br>в ювелирной и fashion-категориях
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Oskelly, Poison Drop, Farfetch, Lichi, Золотое Яблоко, Lamoda — шесть продуктов, на которых я изучала паттерны навигации, checkout-флоу и работу с каталогом.</p>
+          <div class="case-media">
+            <img src="../media/uvc/bench1.png" alt="Бенчмарк">
+          </div>
+          <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px;"><p style="margin-bottom: 0; font-weight: 500;">Что зафиксировала</p></div>
+          <div class="case-media">
+            <img src="../media/uvc/bench2.png" alt="Бенчмарк 2">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Ключевые экраны</h2>
+    <div class="highlight-block">
+      <p>Главная: точка входа в продукт</p>
+    </div>
+
+    <p>Первое, что видит пользователь — hero-баннер с акцией. Не товарная сетка, а эмоциональная фотография украшения на модели. Ниже — сторис с механикой из соцсетей: «новинки», «sale %», «бестселлеры».</p>
+
+    <div class="case-media">
+      <img src="../media/uvc/photo1.png" alt="Главная экран">
+    </div>
+    <p>Категории — горизонтальным скроллом, чтобы не перегружать экран. А для постоянных пользователей — блок с новыми коллекциями, который обновляется с каждым заходом.</p>
+
+    <hr>
+
+    <div class="highlight-block">
+      <p>Каталог и навигация</p>
+    </div>
+
+    <p>Каталог начинается с чистого списка категорий — крупный текст, много воздуха, ничего лишнего. Пользователь выбирает «серьги» и сразу видит товарную сетку с ценами и скидками. Поиск работает с подсказками: начинаешь вводить «золото» — получаешь «золото 585 пробы», «кольцо золотое».</p>
+
+    <div class="case-media">
+      <img src="../media/uvc/photo2.png" alt="Каталог и навигация">
+    </div>
+
+    <p>Фильтры — полноэкранная шторка с категориями: тип изделия, вставка, материал, проба, повод. Внутри каждого — чекбоксы и тогглы. Внизу всегда видно «ПОКАЗАТЬ ВСЕ 202 ТОВАРА» — пользователь понимает, сколько результатов получит до применения.</p>
+
+    <div class="case-media">
+      <img src="../media/uvc/photo3.png" alt="Фильтры и выдача">
+    </div>
+
+    <p>После настройки фильтров — обновлённая выдача. Hero-баннер категории, чипы для быстрого переключения (кольца, браслеты), счётчик товаров. Карточки с фото, ценой и скидкой — всё, что нужно для решения.</p>
+
+    <hr>
+
+    <div class="highlight-block">
+      <p>Карточка товара: эмоция + рацио</p>
+    </div>
+
+    <p>Карточка — место финального решения. Показать красоту, дать характеристики, убрать сомнения, подтолкнуть к покупке.</p>
+
+    <div class="case-media">
+      <img src="../media/uvc/photo4.png" alt="Карточка товара">
+    </div>
+
+    <hr>
+
+    <div class="highlight-block">
+      <p>Корзина и оформление заказа</p>
+    </div>
+
+    <p>Вверху корзины — саммари: сумма, скидка красным, итого. Пользователь сразу видит выгоду и не тратит время на подсчёты. Карточки товаров компактные: фото, цена, управление количеством. Внизу — ненавязчивый кросс-сейл.</p>
+
+    <div class="case-media">
+      <img src="../media/uvc/photo5.png" alt="Корзина">
+    </div>
+
+    <div class="case-media">
+      <video src="../media/uvc/0108.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+    <p>Оформление заказа разбито на 4 шага: адрес и способ доставки → дата и время → данные получателя → оплата. Каждый шаг — один экран, одно решение. Для подарков можно указать другого получателя.</p>
+
+    <hr>
+
+    <div class="highlight-block">
+      <p>Избранное, профиль и поддержка</p>
+    </div>
+
+    <p>Избранное живёт в отдельной вкладке таб-бара. Открываешь — и видишь всё, что отложил. Три состояния: пустое (с подсказкой, куда идти), заполненное, и момент удаления — с возможностью отмены, чтобы случайный свайп не стёр находку недельной давности.</p>
+
+    <div class="case-media">
+      <img src="../media/uvc/photo6.png" alt="Избранное">
+    </div>
+
+    <p>В профиле — бонусная карта: накопленные баллы и QR-код, который можно показать на кассе офлайн-магазина. Бридж между онлайном и розницей — одна из ключевых задач бизнеса.</p>
+
+    <div class="case-media">
+      <img src="../media/uvc/photo7.png" alt="Профиль и бонусная карта">
+    </div>
+
+    <p>История заказов показывает статусы — в обработке, доставлен — и позволяет отфильтровать нужный период.</p>
+
+    <div class="case-media">
+      <img src="../media/uvc/photo8.png" alt="История заказов">
+    </div>
+
+    <p>Чат поддержки встроен прямо в приложение: не внешний виджет, а часть интерфейса. Доступен из каталога, карточки товара и экрана оформления — там, где вопросы возникают чаще всего.</p>
+
+    <div class="case-media">
+      <img src="../media/uvc/photo9.png" alt="Чат поддержки">
+    </div>
+
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Валидация: юзабилити-тестирование
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Экраны спроектированы — но работают ли они? Я провела серию тестов с реальными пользователями из целевых сегментов. Цель: проверить, может ли пользователь найти товар и оформить заказ без подсказок.</p>
+          <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px; margin-bottom: 24px;"><p style="margin-bottom: 0;">Легенда: «Вы собираетесь купить золотое кольцо 585 пробы для себя (или близкого человека). Попробуйте оформить заказ как можно быстрее»</p></div>
+          <div class="case-media">
+            <img src="../media/uvc/v1.png" alt="Юзабилити-тестирование">
+          </div>
+          <h3>Шкала</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px;"><p style="margin-bottom: 0;"><strong>Отлично</strong> — с первого клика</p></div>
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px;"><p style="margin-bottom: 0;"><strong>Хорошо</strong> — не сразу, но разобрался</p></div>
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px;"><p style="margin-bottom: 0;"><strong>Отрицательно</strong> — не разобрался</p></div>
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px;"><p style="margin-bottom: 0;"><strong>Не делал</strong> — альтернативный путь</p></div>
+          </div>
+          <h3>Результаты: 8 задач × 5 респондентов</h3>
+          <div class="case-media">
+            <img src="../media/uvc/v2.png" alt="Результаты тестирования">
+          </div>
+          <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px; margin-top: 24px;"><p style="margin-bottom: 0;"><strong>92% задач</strong> (37 из 40) выполнены с оценкой «Отлично» — с первого клика. Ни одной оценки «Отрицательно». <strong>100% респондентов</strong> дошли до оформления заказа</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        3 проблемы → ранжирование
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Юзабилити-тест выявил три проблемы. Чтобы решить, за что браться первым, я оценила каждую по трём осям: критичность сценария (блокирует ли путь к покупке), влияние на бизнес (теряем ли деньги) и боль пользователя (уйдёт ли он). Каждая ось — от 1 до 3 баллов. Чем выше итоговый балл, тем раньше чиним.</p>
+          <div class="case-media">
+            <img src="../media/uvc/r1.png" alt="Ранжирование проблем">
+          </div>
+          <p>Проблема с оформлением заказа набрала 9 из 9 — максимум по всем осям. Это блокер: пользователь готов платить, но интерфейс его тормозит. Чат мессенджера (5 баллов) — важно, но не критично для конверсии. Контраст баннера уведомлений (3 балла) — косметика, которую можно отложить на следующую итерацию.</p>
+          <div class="case-media">
+            <img src="../media/uvc/r2.png" alt="Ранжирование — детали">
+          </div>
+          <div class="case-media">
+            <img src="../media/uvc/r3.png" alt="Ранжирование — итог">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Было → Стало: итерация по результатам UT
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>Каждая проблема получила конкретное решение. Критичная — в первую очередь.</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0;">
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px;"><p style="margin-bottom: 0; font-weight: 500;">До тестирования</p></div>
+              <p><strong>Чекаут:</strong> все поля на одном экране. Пользователи терялись, не понимали порядок.</p>
+              <hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">
+              <p><strong>Чат:</strong> кнопка в поп-апе, слабый контраст. Не находили.</p>
+              <hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">
+              <p><strong>Уведомления:</strong> баннер незаметен. Игнорировали.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px;"><p style="margin-bottom: 0; font-weight: 500;">После доработки</p></div>
+              <p><strong>Чекаут:</strong> 4 шага с автопереходами. Каждый шаг — одно решение, один экран.</p>
+              <hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">
+              <p><strong>Чат:</strong> вынесен в каталог, карточку и оформление. Всегда в контексте.</p>
+              <hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">
+              <p><strong>Уведомления:</strong> контраст ↑, размер ↑.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapsible">
+      <button class="collapsible-toggle">
+        <span class="collapsible-icon"><span class="line"></span><span class="line"></span></span>
+        Финальный продукт и результаты
+      </button>
+      <div class="collapsible-content">
+        <div class="collapsible-content-inner">
+          <p>После юзабилити-тестирования и итерации — готовое приложение для двух платформ.</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0;">
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">iOS</p></div>
+              <p>32 экрана: авторизация, главная, каталог с фильтрами, карточка товара, корзина и checkout, избранное, профиль, история заказов, чат поддержки, QR-код.</p>
+            </div>
+            <div>
+              <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px;"><p style="margin-bottom: 0; font-weight: 500;">Android</p></div>
+              <p>Зеркальная структура iOS, адаптированная под Material-паттерны: высоты полей, системная навигация, специфика клавиатуры.</p>
+            </div>
+          </div>
+          <h3>Результаты</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin: 16px 0 24px;">
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; text-align: center;"><p style="margin-bottom: 0;"><strong style="font-size: 24px;">92%</strong><br>задач с первого клика</p></div>
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; text-align: center;"><p style="margin-bottom: 0;"><strong style="font-size: 24px;">100%</strong><br>Завершили покупку</p></div>
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; text-align: center;"><p style="margin-bottom: 0;"><strong style="font-size: 24px;">3 из 3</strong><br>проблемы решены до релиза</p></div>
+            <div style="background: #F3F3F3; border-radius: 8px; padding: 14px 18px; text-align: center;"><p style="margin-bottom: 0;"><strong style="font-size: 24px;">40+</strong><br>экранов на две платформы</p></div>
+          </div>
+          <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;">Проект передан в разработку. Метрики конверсии, среднего чека и оттока будут доступны после запуска — и станут основой для следующей итерации. На этапе дизайна я заложила аналитические события на ключевых шагах воронки (главная → каталог → карточка → корзина → оплата), чтобы данные начали собираться с первого дня.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Продуктовые выводы</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+      <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;"><strong>JTBD помог убрать лишнее.</strong> Без фреймворка я бы добавила в MVP расширенный личный кабинет и программу лояльности — потому что так у конкурентов. JTBD показал, что ни один из ключевых сценариев покупки этого не требует на старте.</p></div>
+      <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;"><strong>Тест поймал то, что я не видела.</strong> Одна из трёх проблем казалась мне очевидным решением — без теста это ушло бы в разработку и стоило бы итерации уже на проде.</p></div>
+      <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;"><strong>Бенчмарк показал, чего не хватает рынку.</strong> У всех шести конкурентов фильтры — утилитарные. Никто не решает проблему «тону в ассортименте» на уровне интерфейса. Это подтвердило, что фокус на когнитивной разгрузке — не субъективное ощущение, а незакрытая ниша.</p></div>
+      <div style="background: #F3F3F3; border-radius: 8px; padding: 16px 18px;"><p style="margin-bottom: 0;"><strong>Сегментация изменила приоритеты.</strong> Изначально казалось, что нужно строить продукт вокруг скидок и промо-механик. Но после разбивки на сегменты стало ясно: ключевой сегмент — женщины 20–40 — покупают не по скидке, а по эмоции. Это сдвинуло фокус на качество карточки товара и визуальную подачу.</p></div>
+    </div>
+
+    <div class="case-footer-nav">
+      <a href="../index.html">← Все проекты</a>
+      <a href="kern.html">KERN® →</a>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.collapsible-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.collapsible');
+    const content = parent.querySelector('.collapsible-content');
+    const inner = content.querySelector('.collapsible-content-inner');
+    if (parent.classList.contains('open')) {
+      content.style.height = content.scrollHeight + 'px';
+      requestAnimationFrame(() => { content.style.height = '0'; });
+      parent.classList.remove('open');
+    } else {
+      parent.classList.add('open');
+      content.style.height = inner.offsetHeight + 'px';
+      content.addEventListener('transitionend', () => {
+        if (parent.classList.contains('open')) content.style.height = 'auto';
+      }, { once: true });
+    }
+  });
+});
+
+document.querySelectorAll('.case-back, .case-footer-nav a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    document.querySelector('.case-page').style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.querySelector('.case-page').style.opacity = '0';
+    document.querySelector('.case-page').style.transform = 'translateY(15px)';
+    setTimeout(() => { window.location.href = href; }, 1000);
+  });
+});
+</script>
+</body>
+</html>
