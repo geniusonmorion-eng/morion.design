@@ -299,9 +299,15 @@ body.cursor-hidden * { cursor: none; }
 .accordion .description {
   color: var(--color-foreground);
   column-count: 2;
+  column-fill: balance;
   column-gap: 16px;
   padding-bottom: 16px;
   padding-right: 8px;
+}
+.accordion .description.two-col {
+  column-count: unset;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 .accordion .credit      { color: var(--color-foreground); margin-top: 8px; }
 .accordion .credit-name { color: var(--color-foreground-faded); padding-bottom: 8px; }
