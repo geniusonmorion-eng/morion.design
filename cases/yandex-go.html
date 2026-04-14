@@ -38,7 +38,7 @@
   .case-two-col img { width: 100%; border-radius: 8px; display: block; }
   .case-body p { font-size: 18px; line-height: 1.6; color: #171717; margin-bottom: 16px; font-weight: 400; }
   .case-body p strong { font-weight: 500; }
-  .case-body h2 { font-size: 36px; font-weight: 500; margin: 0 0 40px; color: #171717; }
+  .case-body h2 { font-size: clamp(24px, 5vw, 36px); font-weight: 500; line-height: 1.25; margin: 0 0 40px; color: #171717; }
 
   .highlight-block {
     background: #F3F3F3;
@@ -60,7 +60,7 @@
   .collapsible:first-of-type { border-top: 1px solid #eee; padding-top: 24px; }
   .collapsible-toggle {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
     width: 100%;
     background: none;
@@ -78,7 +78,7 @@
     width: 36px;
     height: 36px;
     min-width: 36px;
-    margin-top: 2px;
+    
     background: #e9e9e9;
     backdrop-filter: blur(23px);
     border-radius: 4px;
@@ -114,9 +114,21 @@
     border-radius: 50%; font-size: 11px; font-weight: 500;
     margin-right: 8px; vertical-align: middle;
   }
-  .plan-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+  .plan-item { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
   .plan-item .plan-badges { display: flex; gap: 4px; margin-top: 3px; flex-shrink: 0; }
   .plan-item p { margin-bottom: 0; }
+  @media (max-width: 699px) {
+    .case-page { padding: 24px 16px 60px; }
+    .case-body h2 { margin: 0 0 24px; }
+    .case-two-col, [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+    .collapsible-toggle { font-size: 20px; }
+    .case-body p, .collapsible-content-inner p { font-size: 15px; line-height: 1.55; }
+    .case-body h2 { font-size: 22px; }
+    .highlight-block p { font-size: 16px !important; }
+    .case-header .case-title { font-size: 28px; }
+    .case-header .case-subtitle { font-size: 15px; }
+    .collapsible-icon { width: 28px; height: 28px; min-width: 28px; }
+  }
 </style>
 </head>
 <body>
@@ -129,7 +141,7 @@
       <h1>ЯндексGO — Бери Заряд</h1>
     </div>
     <div class="case-gallery-full">
-      <video preload="metadata" src="https://res.cloudinary.com/der7innqu/video/upload/q_auto/media/yandex.mp4" autoplay muted loop playsinline></video>
+      <video src="../media/yandex.mp4" autoplay muted loop playsinline></video>
     </div>
 
     <div class="case-body">
@@ -139,7 +151,7 @@
     </div>
 
     <div class="case-gallery-full" style="margin-top: 24px;">
-      <img src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/1.png" alt="О проекте">
+      <img src="../media/yandex-case/yandex-new/1.png" alt="О проекте">
     </div>
 
     <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
@@ -159,7 +171,7 @@
     </div>
 
     <div class="case-gallery-full" style="margin-top: 24px;">
-      <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/2.png" alt="Ограничения">
+      <img src="../media/yandex-case/yandex-new/2.png" alt="Ограничения">
     </div>
 
     <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
@@ -187,11 +199,11 @@
         <div class="collapsible-content-inner">
           <p>Зафиксировала понимание задачи и ключевые критерии успеха.</p>
           <div class="case-gallery-full" style="margin: 24px 0;">
-            <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/3.png" alt="Скоринг задачи">
+            <img src="../media/yandex-case/yandex-new/3.png" alt="Скоринг задачи">
           </div>
           <p>Сформулировала вопросы к карточке аренды — именно её предстояло переработать. Погружение в контекст помогло провести UX-аудит предметно.</p>
           <div class="case-gallery-full" style="margin: 24px 0;">
-            <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/4.png" alt="UX-аудит">
+            <img src="../media/yandex-case/yandex-new/4.png" alt="UX-аудит">
           </div>
         </div>
       </div>
@@ -207,7 +219,7 @@
         <div class="collapsible-content-inner">
           <p>Проанализировала шейринговые сервисы в РФ и на западном рынке: PowerApp, EnergoS, PowerNow и другие. Для каждого зафиксировала структуру главной страницы, карточку тарифа и флоу аренды.</p>
           <div class="case-gallery-full" style="margin: 24px 0;">
-            <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/5.png" alt="Discovery">
+            <img src="../media/yandex-case/yandex-new/5.png" alt="Discovery">
           </div>
           <p><strong>Промежуточные выводы</strong></p>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
@@ -246,7 +258,7 @@
         <div class="collapsible-content-inner">
           <p>На основе дискавери сформулировала гипотезы. Некоторые из них:</p>
           <div class="case-gallery-full" style="margin: 24px 0;">
-            <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/6.png" alt="Бенчмарки">
+            <img src="../media/yandex-case/yandex-new/6.png" alt="Бенчмарки">
           </div>
           <p><strong>Промежуточные выводы по discovery, вот некоторые из них:</strong></p>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
@@ -296,7 +308,7 @@
           </div>
           <p>Для каждого сегмента прописала джобы по модели Jobs as Progress / Jobs as Activities, чтобы видеть и боли, и ожидания от результата.</p>
           <div class="case-gallery-full" style="margin: 24px 0;">
-            <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/7.png" alt="Сегменты клиентов">
+            <img src="../media/yandex-case/yandex-new/7.png" alt="Сегменты клиентов">
           </div>
         </div>
       </div>
@@ -342,7 +354,7 @@
       <div class="collapsible-content">
         <div class="collapsible-content-inner">
           <div class="case-gallery-full">
-            <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/8.png" alt="Core Flow">
+            <img src="../media/yandex-case/yandex-new/8.png" alt="Core Flow">
           </div>
         </div>
       </div>
@@ -356,7 +368,7 @@
     </div>
 
     <div class="case-gallery-full" style="margin-top: 24px;">
-      <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/9.png" alt="Первая итерация">
+      <img src="../media/yandex-case/yandex-new/9.png" alt="Первая итерация">
     </div>
 
     <div class="case-body" style="margin-top: 32px;">
@@ -366,7 +378,7 @@
     </div>
 
     <div class="case-gallery-full" style="margin-top: 24px;">
-      <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/10.png" alt="Кросспродажи">
+      <img src="../media/yandex-case/yandex-new/10.png" alt="Кросспродажи">
     </div>
 
     <div class="case-body" style="margin-top: 32px;">
@@ -374,11 +386,11 @@
     </div>
 
     <div class="case-gallery-full" style="margin-top: 24px;">
-      <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/11.png" alt="Маркетинг">
+      <img src="../media/yandex-case/yandex-new/11.png" alt="Маркетинг">
     </div>
 
     <div class="case-gallery-full" style="margin-top: 12px;">
-      <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/12.png" alt="Маркетинг 2">
+      <img src="../media/yandex-case/yandex-new/12.png" alt="Маркетинг 2">
     </div>
 
     <div class="case-body" style="margin-top: 32px;">
@@ -386,7 +398,7 @@
     </div>
 
     <div class="case-gallery-full" style="margin-top: 24px;">
-      <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/13.png" alt="Карточка зарядки">
+      <img src="../media/yandex-case/yandex-new/13.png" alt="Карточка зарядки">
     </div>
 
     <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
@@ -400,7 +412,7 @@
     </div>
 
     <div class="case-gallery-full" style="margin-top: 24px;">
-      <img loading="lazy" src="https://res.cloudinary.com/der7innqu/image/upload/f_auto,q_auto/media/yandex-case/yandex-new/14.png" alt="Что дальше">
+      <img src="../media/yandex-case/yandex-new/14.png" alt="Что дальше">
     </div>
 
   </div>
@@ -429,9 +441,9 @@ document.querySelectorAll('.case-back').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const href = link.getAttribute('href');
-    document.querySelector('.case-page').style.animation = 'none'; document.querySelector('.case-page').style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.querySelector('.case-page').style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
     document.querySelector('.case-page').style.opacity = '0';
-    document.querySelector('.case-page').style.transform = 'scale(0.98)';
+    document.querySelector('.case-page').style.transform = 'translateY(15px)';
     setTimeout(() => { window.location.href = href; }, 1000);
   });
 });

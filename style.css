@@ -54,11 +54,16 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+@keyframes pageIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 html, body {
   background: var(--frame-bg);
   color: var(--color-foreground);
   font-family: var(--font-sans);
   font-size: 12px;
+  animation: pageIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
   line-height: 14px;
   letter-spacing: -0.065px;
   font-weight: 400;
@@ -613,28 +618,48 @@ body.cursor-hidden * { cursor: none; }
   left: 50%;
   transform: translateX(-50%);
   z-index: 9998;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(40px) saturate(1.8);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
   border-radius: 50px;
   padding: 4px;
-  gap: 2px;
+  gap: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+.mobile-tabs-inner {
+  position: relative;
+  display: flex;
+  gap: 0;
+}
+.mobile-tabs-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 .mobile-tab {
+  position: relative;
+  z-index: 1;
   padding: 10px 24px;
   border-radius: 50px;
   font-size: 14px;
-  font-weight: 400;
-  color: #999;
+  font-weight: 500;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.45);
   background: transparent;
   border: none;
   cursor: pointer;
   font-family: var(--font-sans);
-  transition: all 0.3s ease;
+  transition: color 0.35s ease;
 }
 .mobile-tab.active {
-  background: #fff;
-  color: #000;
+  color: #fff;
 }
 
 /* ======================================================================

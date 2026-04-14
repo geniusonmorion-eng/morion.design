@@ -564,10 +564,22 @@ document.addEventListener('keydown', (e) => {
 const mobileTabs = document.querySelectorAll('.mobile-tab');
 const colLeft = document.querySelector('.col-left');
 const colRightEl = document.querySelector('.col-right');
+const tabsIndicator = document.getElementById('tabs-indicator');
+
+function moveIndicator(tab) {
+	if (!tabsIndicator || !tab) return;
+	tabsIndicator.style.width = tab.offsetWidth + 'px';
+	tabsIndicator.style.transform = 'translateX(' + tab.offsetLeft + 'px)';
+}
+
+const activeTab = document.querySelector('.mobile-tab.active');
+if (activeTab) requestAnimationFrame(() => moveIndicator(activeTab));
+
 mobileTabs.forEach(tab => {
 	tab.addEventListener('click', () => {
 		mobileTabs.forEach(t => t.classList.remove('active'));
 		tab.classList.add('active');
+		moveIndicator(tab);
 		const target = tab.getAttribute('data-target');
 		if (target === 'left') {
 			colLeft.classList.remove('hidden');
