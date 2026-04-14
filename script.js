@@ -12,6 +12,12 @@
    Split layout: innerWidth >= 1000
    ====================================================================== */
 
+document.body.style.opacity = '0';
+requestAnimationFrame(() => {
+	document.body.style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+	document.body.style.opacity = '1';
+});
+
 const site = document.getElementById('site');
 const leftCol = document.querySelector('.col-left');
 const rightCol = document.querySelector('.col-right');
@@ -458,10 +464,10 @@ document.querySelectorAll('.case').forEach((caseEl) => {
 				return;
 			}
 			if (href) {
-				document.body.style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+				document.body.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
 				document.body.style.opacity = '0';
 				document.body.style.transform = 'scale(0.98)';
-				setTimeout(() => { window.location.href = href; }, 1000);
+				setTimeout(() => { window.location.href = href; }, 700);
 			}
 		});
 	}
@@ -471,10 +477,10 @@ document.querySelectorAll('.case').forEach((caseEl) => {
 			if (e.target.closest('.arrow')) return;
 			if (swiped) return;
 			e.preventDefault();
-			document.body.style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+			document.body.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
 			document.body.style.opacity = '0';
 			document.body.style.transform = 'scale(0.98)';
-			setTimeout(() => { window.location.href = href; }, 1000);
+			setTimeout(() => { window.location.href = href; }, 700);
 		});
 		gallery.style.cursor = 'pointer';
 	}

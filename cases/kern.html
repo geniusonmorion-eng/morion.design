@@ -318,9 +318,9 @@ document.querySelectorAll('.case-back').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const href = link.getAttribute('href');
-    document.querySelector('.case-page').style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.querySelector('.case-page').style.animation = 'none'; document.querySelector('.case-page').style.transition = 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
     document.querySelector('.case-page').style.opacity = '0';
-    document.querySelector('.case-page').style.transform = 'translateY(15px)';
+    document.querySelector('.case-page').style.transform = 'scale(0.98)';
     setTimeout(() => { window.location.href = href; }, 1000);
   });
 });
