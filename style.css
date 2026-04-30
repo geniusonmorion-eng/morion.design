@@ -110,6 +110,18 @@ img, video { max-width: 100%; }
   will-change: transform;
 }
 
+@media (min-width: 700px) {
+  .col-left {
+    transform: translate3d(var(--gap), 0, 0) scale(calc((50vw - 12px) / 50vw));
+    transform-origin: 0 50vh;
+  }
+
+  .col-right {
+    transform: translate3d(calc(50vw + 4px), 0, 0) scale(calc((50vw - 12px) / 50vw));
+    transform-origin: 0 50vh;
+  }
+}
+
 .track {
   display: flex;
   flex-direction: column;
