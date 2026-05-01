@@ -455,15 +455,22 @@ function setupGalleries() {
 		let touchStartX = 0;
 		let touchStartY = 0;
 		let swiped = false;
+		let isVisible = true;
+
+		const updateVisibility = () => {
+			const rect = caseEl.getBoundingClientRect();
+			isVisible = rect.bottom > -240 && rect.top < window.innerHeight + 240;
+		};
 
 		if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
 
 		const render = () => {
+			updateVisibility();
 			if (track) track.style.transform = `translateX(${-index * 100}%)`;
 			if (curEl) curEl.textContent = String(index + 1).padStart(2, '0');
 			slides.forEach((slide, i) => {
 				slide.querySelectorAll('video').forEach((video) => {
-					if (i === index && video.autoplay) video.play().catch(() => {});
+					if (isVisible && i === index && video.autoplay) video.play().catch(() => {});
 					else video.pause();
 				});
 			});
@@ -520,6 +527,16 @@ function setupGalleries() {
 				navigateTo(href);
 			});
 			gallery.style.cursor = 'pointer';
+		}
+
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					isVisible = entry.isIntersecting;
+					render();
+				});
+			}, { rootMargin: '240px 0px', threshold: 0.01 });
+			observer.observe(caseEl);
 		}
 
 		render();
