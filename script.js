@@ -677,21 +677,34 @@ function setupClock() {
 	setInterval(updateClock, 1000);
 }
 
+function disableEnhancedLayout() {
+	document.documentElement.classList.remove('js-ready', 'is-split');
+	document.body.classList.remove('is-split');
+	bindSplitListeners(false);
+	bindSitePointer(false);
+	resetColumnTransforms();
+}
+
 function init() {
 	if (!site || !leftCol || !rightCol || !leftTrack || !rightTrack) return;
-	document.documentElement.classList.add('js-ready');
-	setupScrollAdapter(leftTrack, leftScroll);
-	setupScrollAdapter(rightTrack, rightScroll);
-	setupMobileTabs();
-	setupGalleries();
-	setupAccordions();
-	setupKeyboardNavigation();
-	setupCursor();
-	setupIntroVideo();
-	setupClock();
-	window.addEventListener('resize', syncSplitMode);
-	syncSplitMode();
-	requestAnimationFrame(tick);
+	try {
+		document.documentElement.classList.add('js-ready');
+		setupScrollAdapter(leftTrack, leftScroll);
+		setupScrollAdapter(rightTrack, rightScroll);
+		setupMobileTabs();
+		setupGalleries();
+		setupAccordions();
+		setupKeyboardNavigation();
+		setupCursor();
+		setupIntroVideo();
+		setupClock();
+		window.addEventListener('resize', syncSplitMode);
+		syncSplitMode();
+		requestAnimationFrame(tick);
+	} catch (error) {
+		console.error(error);
+		disableEnhancedLayout();
+	}
 }
 
 if (document.readyState === 'loading') {
