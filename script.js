@@ -310,13 +310,17 @@ function syncSplitMode() {
 	const split = isSplit();
 	bindSplitListeners(split);
 	bindSitePointer(split);
+	document.documentElement.classList.toggle('is-split', split);
+	document.body.classList.toggle('is-split', split);
 
 	if (split) {
 		state.initialWheel = true;
+		if (mobileSide) {
+			leftCol?.classList.remove('hidden');
+			rightCol?.classList.remove('visible');
+		}
 		mobileSide = null;
-		document.body.classList.add('is-split');
 	} else {
-		document.body.classList.remove('is-split');
 		leftScroll.y = 0;
 		rightScroll.y = 0;
 		resetColumnTransforms();
@@ -675,6 +679,7 @@ function setupClock() {
 
 function init() {
 	if (!site || !leftCol || !rightCol || !leftTrack || !rightTrack) return;
+	document.documentElement.classList.add('js-ready');
 	setupScrollAdapter(leftTrack, leftScroll);
 	setupScrollAdapter(rightTrack, rightScroll);
 	setupMobileTabs();

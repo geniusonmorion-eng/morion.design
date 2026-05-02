@@ -38,8 +38,8 @@
 html,
 body {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  overflow: auto;
   background: var(--frame-bg);
   color: var(--color-foreground);
   font-family: var(--font-sans);
@@ -90,33 +90,50 @@ img, video { max-width: 100%; }
    Split frame
    ====================================================================== */
 .frame {
-  position: fixed;
-  inset: 0;
   background: var(--frame-bg);
-  overflow: hidden;
 }
 
 .page {
-  position: absolute;
-  inset: 0;
+  width: 100%;
 }
 
 .col {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50vw;
-  height: 100vh;
-  will-change: transform;
+  width: 100%;
 }
 
 @media (min-width: 700px) {
-  .col-left {
+  html.js-ready.is-split,
+  html.js-ready.is-split body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  html.js-ready.is-split .frame {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  html.js-ready.is-split .page {
+    position: absolute;
+    inset: 0;
+  }
+
+  html.js-ready.is-split .col {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    will-change: transform;
+  }
+
+  html.js-ready.is-split .col-left {
     transform: translate3d(var(--gap), 0, 0) scale(calc((50vw - 12px) / 50vw));
     transform-origin: 0 50vh;
   }
 
-  .col-right {
+  html.js-ready.is-split .col-right {
     transform: translate3d(calc(50vw + 4px), 0, 0) scale(calc((50vw - 12px) / 50vw));
     transform-origin: 0 50vh;
   }
