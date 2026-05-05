@@ -80,6 +80,9 @@ const state = {
 };
 
 const ratioProxy = { ratio: 0.5 };
+const galleryVideoSyncers = new Set();
+let lastGalleryVideoSync = 0;
+const VIDEO_SYNC_INTERVAL = 250;
 
 function isSplit() {
 	return window.innerWidth >= SPLIT_BP;
@@ -294,6 +297,9 @@ function setMobileSide(target, options = {}) {
 
 	leftCol?.classList.toggle('hidden', target !== 'left');
 	rightCol?.classList.toggle('visible', target === 'right');
+	requestAnimationFrame(() => {
+		galleryVideoSyncers.forEach((syncVideos) => syncVideos());
+	});
 
 	if (restore) {
 		requestAnimationFrame(() => {
@@ -376,6 +382,12 @@ function tick() {
 		rightCol.style.transform = `translate3d(${rightX}px, ${tyR}px, 0) scale(${rightScale})`;
 		leftTrack.style.gap = `${PADDING / leftScale}px`;
 		rightTrack.style.gap = `${PADDING / rightScale}px`;
+
+		const now = performance.now();
+		if (now - lastGalleryVideoSync > VIDEO_SYNC_INTERVAL) {
+			lastGalleryVideoSync = now;
+			galleryVideoSyncers.forEach((syncVideos) => syncVideos());
+		}
 	}
 
 	requestAnimationFrame(tick);
@@ -444,6 +456,19 @@ function setupIntroVideo() {
 	}
 }
 
+function playGalleryVideo(video) {
+	if (video.dataset.loadRequested !== 'true' && video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+		video.dataset.loadRequested = 'true';
+		if (video.preload === 'none') video.preload = 'metadata';
+		video.load();
+	}
+	video.play().catch(() => {});
+}
+
+function pauseGalleryVideo(video) {
+	if (!video.paused) video.pause();
+}
+
 function setupGalleries() {
 	document.querySelectorAll('.case').forEach((caseEl) => {
 		const track = caseEl.querySelector('.gallery-track');
@@ -459,26 +484,33 @@ function setupGalleries() {
 		let touchStartX = 0;
 		let touchStartY = 0;
 		let swiped = false;
-		let isVisible = true;
+		let isVisible = false;
 
 		const updateVisibility = () => {
 			const rect = caseEl.getBoundingClientRect();
-			isVisible = rect.bottom > -240 && rect.top < window.innerHeight + 240;
+			isVisible = rect.width > 0 && rect.height > 0 && rect.bottom > -240 && rect.top < window.innerHeight + 240;
 		};
 
 		if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
 
-		const render = () => {
+		const syncVideos = () => {
 			updateVisibility();
-			if (track) track.style.transform = `translateX(${-index * 100}%)`;
-			if (curEl) curEl.textContent = String(index + 1).padStart(2, '0');
 			slides.forEach((slide, i) => {
 				slide.querySelectorAll('video').forEach((video) => {
-					if (isVisible && i === index && video.autoplay) video.play().catch(() => {});
-					else video.pause();
+					const shouldAutoplay = video.autoplay || video.dataset.autoplay === 'true';
+					if (isVisible && i === index && shouldAutoplay) playGalleryVideo(video);
+					else pauseGalleryVideo(video);
 				});
 			});
 		};
+
+		const render = () => {
+			if (track) track.style.transform = `translateX(${-index * 100}%)`;
+			if (curEl) curEl.textContent = String(index + 1).padStart(2, '0');
+			syncVideos();
+		};
+
+		galleryVideoSyncers.add(syncVideos);
 
 		const go = (dir) => {
 			if (!total) return;
@@ -692,14 +724,25 @@ function init() {
 		setupScrollAdapter(leftTrack, leftScroll);
 		setupScrollAdapter(rightTrack, rightScroll);
 		setupMobileTabs();
+		syncSplitMode();
 		setupGalleries();
 		setupAccordions();
 		setupKeyboardNavigation();
 		setupCursor();
 		setupIntroVideo();
 		setupClock();
+		document.addEventListener('visibilitychange', () => {
+			if (document.hidden) document.querySelectorAll('video').forEach((video) => pauseGalleryVideo(video));
+			else {
+				galleryVideoSyncers.forEach((syncVideos) => syncVideos());
+				const introVideo = document.getElementById('intro-video');
+				const rect = introVideo?.getBoundingClientRect();
+				if (introVideo && rect && rect.bottom > 0 && rect.top < window.innerHeight) {
+					introVideo.play().catch(() => {});
+				}
+			}
+		});
 		window.addEventListener('resize', syncSplitMode);
-		syncSplitMode();
 		requestAnimationFrame(tick);
 	} catch (error) {
 		console.error(error);
