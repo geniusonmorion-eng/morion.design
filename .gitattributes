@@ -1,6 +1,12 @@
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
 media/SuperUVC/video_main-home.mp4 -filter -diff -merge -text
+media/SuperUVC/video_main-case.mp4 -filter -diff -merge -text
+media/uvelirnew/eye-web.mp4 -filter -diff -merge -text
+media/uvelirnew/video_1-web.mp4 -filter -diff -merge -text
+media/uvelirnew/video_2-web.mp4 -filter -diff -merge -text
+media/uvelirnew/video_3-web.mp4 -filter -diff -merge -text
+media/uvelirnew/video_4-web.mp4 -filter -diff -merge -text
 media/kern/kern-case/design3.mp4 -filter -diff -merge -text
 media/kern/kern-case/design3-lite.mp4 -filter -diff -merge -text
 media/kern/kern-case/final-video-hq.mp4 -filter -diff -merge -text
